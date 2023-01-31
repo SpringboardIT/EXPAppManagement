@@ -1,0 +1,361 @@
+﻿
+@model EXPAppManagement.Models.ClockingModel
+<div class="row" style="padding: 10px 10px 10px 10px">
+    <div class="cell">
+        <h1>Filter Clockings</h1>
+        <form name="SearchForm" id="CreateLocation" action="/Home/FilterClockings" onsubmit="return validateForm()" method="post">
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>User</label>
+                </div>
+                <div class="cell">
+                    <select name="EmployeeID" required>
+                        <option value="0" selected disabled>Please Select...</option>
+                        @foreach (var usr in Model.allUsers.OrderBy(x => x.Name).ThenBy(x => x.Email).ToList())
+                        {
+                            if (Model.EmployeeID.HasValue)
+                            {
+                                if (Model.EmployeeID.Value == usr.ID)
+                                {
+                                    if (string.IsNullOrEmpty(usr.Name))
+                                    {
+                                        <option value="@usr.ID">@usr.Email</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@usr.ID">@usr.Name</option>
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (string.IsNullOrEmpty(usr.Name))
+                                    {
+                                        <option value="@usr.ID">@usr.Email</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@usr.ID">@usr.Name</option>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (string.IsNullOrEmpty(usr.Name))
+                                {
+                                    <option value="@usr.ID">@usr.Email</option>
+                                }
+                                else
+                                {
+                                    <option value="@usr.ID">@usr.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+
+                </div>
+
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Location</label>
+                </div>
+                <div class="cell">
+                    <select name="LocationName" id="LocationName" required>
+                        <!--name="SiteID"-->
+                        <option value="0" selected disabled>Please Select...</option>
+                        @foreach (var loc in Model.allLocations.OrderBy(x => x.LocationName).ToList())
+                        {
+                            if (Model.SiteID.HasValue)
+                            {
+                                if (Model.SiteID.Value == loc.ID)
+                                {
+                                    <option selected value="@loc.ID">@loc.LocationName</option>
+                                }
+                                else
+                                {
+                                    <option value="@loc.ID">@loc.LocationName</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="@loc.ID">@loc.LocationName</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Start Date</label>
+                    <input name="StartDate" type="text" data-role="calendarpicker" data-format="%d %b %Y" placeholder="Start Date" required/>
+                </div>
+                <div class="cell">
+                    <label>End Date</label>
+                    <input name="EndDate" type="text" data-role="calendarpicker" data-format="%d %b %Y" placeholder="End Date" required/>
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    @if (Model.ShowApproved)
+                    {
+                        <input type="checkbox" name="approved" checked="checked" /><label>Show Approved</label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="approved" /><label>Show Approved</label>
+                    }
+
+                </div>
+                <div class="cell">
+                    @if (Model.ShowUnApproved)
+                    {
+                        <input type="checkbox" name="unapproved" checked="checked" /><label>Show Non-Approved</label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="unapproved" /><label>Show Non-Approved</label>
+                    }
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                        <input type="submit" value="Search" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="cell" style="background-color:#efefef">
+        <h1>Insert New Clock</h1>
+        <form id="CreateLocation" action="/Home/InsertClocking" method="post" autocomplete="off">
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>User</label>
+                </div>
+                <div class="cell">
+                    <select name="EmployeeID" required>
+                        <option value="0" selected disabled>Please Select...</option>
+                        @foreach (var usr in Model.allUsers.OrderBy(x => x.Name).ThenBy(x => x.Email).ToList())
+                        {
+                            if (string.IsNullOrEmpty(usr.Name))
+                            {
+                                <option value="@usr.ID">@usr.Email</option>
+                            }
+                            else
+                            {
+                                <option value="@usr.ID">@usr.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Location</label>
+                </div>
+                <div class="cell">
+                    <select name="SiteID" required>
+                        <option value="0" selected disabled>Please Select...</option>
+                        @foreach (var loc in Model.allLocations.OrderBy(x => x.LocationName).ToList())
+                        {
+
+                            <option value="@loc.ID">@loc.LocationName</option>
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Date</label>
+                </div>
+                <div class="cell">
+                    <input name="Date" type="text" data-role="calendarpicker" data-format="%d %b %Y">
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Duration (mins)</label>
+                </div>
+                <div class="cell">
+                    <input name="Duration" type="number" />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Comments</label>
+                </div>
+                <div class="cell">
+                    <input type="text" name="Comments" />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Approved</label>
+                </div>
+                <div class="cell">
+                    <input type="checkbox" name="Approved" />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+
+                </div>
+                <div class="cell">
+                    <input type="submit" value="Save" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<h2>Existing Clockings</h2>
+<form id="CreateLocation" action="/Home/SaveClockings" method="post" autocomplete="off">
+    @if (Model.Timesheets != null)
+    {
+        <br /><br />
+        <input type="submit" value="Save" />
+        <br /><br />
+        <table id="Timesheets">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration (mins)</th>
+                    <th>Approved</th>
+                    <th>Comments</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tsheet in Model.Timesheets)
+                {
+                    <tr>
+                        @{ TimeSpan ts = new TimeSpan(0); if (!tsheet.ClockOutDateTime.HasValue) { ts = new TimeSpan(0); } else { ts = tsheet.ClockOutDateTime.Value - tsheet.ClockInDateTime; }
+                            int RoundedDuration = (int)ts.TotalMinutes % 15 >= 7 ? (int)ts.TotalMinutes + 15 - (int)ts.TotalMinutes % 15 : (int)ts.TotalMinutes - (int)ts.TotalMinutes % 15;
+                        }
+                        @if (Model.allUsers.FirstOrDefault(x => x.ID == tsheet.AppUserID) != null)
+                        {
+                            if (string.IsNullOrEmpty(Model.allUsers.FirstOrDefault(x => x.ID == tsheet.AppUserID).Name))
+                            {
+                                <td>
+                                    @Html.Raw(Model.allUsers.FirstOrDefault(x => x.ID == tsheet.AppUserID).Email)
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.Raw(Model.allUsers.FirstOrDefault(x => x.ID == tsheet.AppUserID).Name)
+                                </td>
+                            }
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td>
+
+                            <select name="site--@tsheet.UniqueID.ToString()">
+                                <option value="0" selected disabled>Please Select...</option>
+                                @foreach (var loc in Model.allLocations.OrderBy(x => x.LocationName).ToList())
+                                {
+                                    if (tsheet.ClockingLocationID.HasValue)
+                                    {
+                                        if (tsheet.ClockingLocationID.Value == loc.ID)
+                                        {
+                                            <option selected value="@loc.ID">@loc.LocationName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@loc.ID">@loc.LocationName</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="@loc.ID">@loc.LocationName</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                        @if (tsheet.ClockInTransaction == null)
+                        {
+                            <td><label style="display: none; ">@tsheet.ClockInDateTime.ToString("yyyy MM dd")</label><input name="date--@tsheet.UniqueID.ToString()" type="text" data-role="calendarpicker" data-format="%d/%m/%Y" value="@tsheet.ClockInDateTime.Year.ToString()-@tsheet.ClockInDateTime.Month.ToString()-@tsheet.ClockInDateTime.Day.ToString()"></td>
+                            <td></td>
+                            <td></td>
+                        }
+                        else
+                        {
+
+                            <td><label style="display: none; ">@tsheet.ClockInDateTime.ToString("yyyy MM dd")</label>@tsheet.ClockInDateTime.ToString("dd/MM/yyyy")</td>
+                            <td>@tsheet.ClockInDateTime.ToLocalTime().ToString("HH:mm")</td>
+                            if (tsheet.ClockOutDateTime.HasValue)
+                            {
+                                <td>@Html.Raw(tsheet.ClockOutDateTime.Value.ToLocalTime().ToString("HH:mm"))</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        }
+
+                        @if (tsheet.Duration.HasValue)
+                        {
+                            <td><input name="duration--@tsheet.UniqueID.ToString()" type="number" value="@tsheet.Duration.Value" /></td>
+                        }
+                        else
+                        {
+                            <td><input name="duration--@tsheet.UniqueID.ToString()" type="number" value="@RoundedDuration" /></td>
+                        }
+
+                        <td>
+                            @if (tsheet.Approved)
+                            {
+                                <input type="checkbox" name="approved--@tsheet.UniqueID.ToString()" checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="approved--@tsheet.UniqueID.ToString()" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" name="comments--@tsheet.UniqueID.ToString()" value="@tsheet.Comments" />
+                        </td>
+                        <td><button type="button" onclick="AllocateTime('@tsheet.UniqueID.ToString()')">Allocate Time</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <script>
+        function AllocateTime(TimesheetID) {
+            $.ajax({ url: '/Home/AllocateTime?', data: 'json', type: 'GET', data: 'UniqueID=' + TimesheetID, cache: false, success: function (result) { $('#popUpContent').empty().append(result); }});
+        @Html.Raw("Metro.dialog.open('#popUp');")
+            return false;
+        }
+        function validateForm() {
+            //let x = document.forms["SearchForm"]["LocationName"].value;
+            let y = document.forms["SearchForm"]["StartDate"].value;
+            let z = document.forms["SearchForm"]["EndDate"].value;
+            if (y == "") {
+                alert("A Start Date must be selected");
+                return false;
+            }
+            if (z == "") {
+                alert("An End Date must be selected");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        $(document).ready(function () {
+            $('#Timesheets').DataTable();
+        });
+    </script>
+</form>

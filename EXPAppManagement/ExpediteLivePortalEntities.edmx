@@ -1,0 +1,1766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExpediteTestPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Nop_Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SaltKey" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AffiliateID" Type="int" Nullable="false" />
+          <Property Name="BillingAddressID" Type="int" Nullable="false" />
+          <Property Name="ShippingAddressID" Type="int" Nullable="false" />
+          <Property Name="LastPaymentMethodID" Type="int" Nullable="false" />
+          <Property Name="LastAppliedCouponCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GiftCardCouponCodes" Type="xml" Nullable="false" />
+          <Property Name="CheckoutAttributes" Type="xml" Nullable="false" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="TaxDisplayTypeID" Type="int" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsGuest" Type="bit" Nullable="false" />
+          <Property Name="IsForumModerator" Type="bit" Nullable="false" />
+          <Property Name="TotalForumPosts" Type="int" Nullable="false" />
+          <Property Name="Signature" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="AdminComment" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="TimeZoneID" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AvatarID" Type="int" Nullable="false" />
+          <Property Name="SITOrganisationID" Type="int" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Nop_CustomerAttribute">
+          <Key>
+            <PropertyRef Name="CustomerAttributeId" />
+          </Key>
+          <Property Name="CustomerAttributeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nop_Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerLanguageID" Type="int" Nullable="false" />
+          <Property Name="CustomerTaxDisplayTypeID" Type="int" Nullable="false" />
+          <Property Name="CustomerIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderSubtotalInclTax" Type="money" Nullable="false" />
+          <Property Name="OrderSubtotalExclTax" Type="money" Nullable="false" />
+          <Property Name="OrderShippingInclTax" Type="money" Nullable="false" />
+          <Property Name="OrderShippingExclTax" Type="money" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeInclTax" Type="money" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeExclTax" Type="money" Nullable="false" />
+          <Property Name="OrderTax" Type="money" Nullable="false" />
+          <Property Name="OrderTotal" Type="money" Nullable="false" />
+          <Property Name="OrderDiscount" Type="money" Nullable="false" />
+          <Property Name="OrderSubtotalInclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="OrderSubtotalExclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="OrderShippingInclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="OrderShippingExclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeInclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeExclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="OrderTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="OrderTotalInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="OrderDiscountInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="CustomerCurrencyCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CheckoutAttributeDescription" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CheckoutAttributesXML" Type="xml" Nullable="false" />
+          <Property Name="OrderWeight" Type="float" Nullable="false" />
+          <Property Name="AffiliateID" Type="int" Nullable="false" />
+          <Property Name="OrderStatusID" Type="int" Nullable="false" />
+          <Property Name="AllowStoringCreditCardNumber" Type="bit" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CardName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaskedCreditCardNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CardCVV2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CardExpirationMonth" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CardExpirationYear" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PaymentMethodID" Type="int" Nullable="false" />
+          <Property Name="PaymentMethodName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AuthorizationTransactionID" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="AuthorizationTransactionCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="AuthorizationTransactionResult" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CaptureTransactionID" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CaptureTransactionResult" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="SubscriptionTransactionID" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="PurchaseOrderNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PaymentStatusID" Type="int" Nullable="false" />
+          <Property Name="PaidDate" Type="datetime" />
+          <Property Name="BillingFirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingLastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingPhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BillingEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BillingFaxNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BillingCompany" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddress1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddress2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingStateProvince" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingStateProvinceID" Type="int" Nullable="false" />
+          <Property Name="BillingZipPostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BillingCountry" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingCountryID" Type="int" Nullable="false" />
+          <Property Name="ShippingStatusID" Type="int" Nullable="false" />
+          <Property Name="ShippingFirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingLastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingPhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShippingEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ShippingFaxNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShippingCompany" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingAddress1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingAddress2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingStateProvince" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingStateProvinceID" Type="int" Nullable="false" />
+          <Property Name="ShippingZipPostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ShippingCountry" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingCountryID" Type="int" Nullable="false" />
+          <Property Name="ShippingMethod" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShippingRateComputationMethodID" Type="int" Nullable="false" />
+          <Property Name="ShippedDate" Type="datetime" />
+          <Property Name="TrackingNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DeliveryDate" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="EmployeeName" Type="text" />
+        </EntityType>
+        <EntityType Name="Nop_OrderProductVariant">
+          <Key>
+            <PropertyRef Name="OrderProductVariantID" />
+          </Key>
+          <Property Name="OrderProductVariantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ProductVariantID" Type="int" Nullable="false" />
+          <Property Name="UnitPriceInclTax" Type="money" Nullable="false" />
+          <Property Name="UnitPriceExclTax" Type="money" Nullable="false" />
+          <Property Name="PriceInclTax" Type="money" Nullable="false" />
+          <Property Name="PriceExclTax" Type="money" Nullable="false" />
+          <Property Name="UnitPriceInclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="UnitPriceExclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="PriceInclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="PriceExclTaxInCustomerCurrency" Type="money" Nullable="false" />
+          <Property Name="AttributeDescription" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="AttributesXML" Type="xml" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="DiscountAmountInclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DiscountAmountExclTax" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DownloadCount" Type="int" Nullable="false" />
+          <Property Name="OrderProductVariantGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDownloadActivated" Type="bit" Nullable="false" />
+          <Property Name="LicenseDownloadID" Type="int" Nullable="false" />
+          <Property Name="CostCentreID" Type="int" />
+          <Property Name="EmployeeName" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Nop_Picture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PictureBinary" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Extension" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsNew" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nop_Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdminComment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="TemplateID" Type="int" Nullable="false" />
+          <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+          <Property Name="MetaKeywords" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="MetaDescription" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="SEName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AllowCustomerReviews" Type="bit" Nullable="false" />
+          <Property Name="AllowCustomerRatings" Type="bit" Nullable="false" />
+          <Property Name="RatingSum" Type="int" Nullable="false" />
+          <Property Name="TotalRatingVotes" Type="int" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nop_ProductVariant">
+          <Key>
+            <PropertyRef Name="ProductVariantId" />
+          </Key>
+          <Property Name="ProductVariantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="SKU" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="AdminComment" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="ManufacturerPartNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsGiftCard" Type="bit" Nullable="false" />
+          <Property Name="IsDownload" Type="bit" Nullable="false" />
+          <Property Name="DownloadID" Type="int" Nullable="false" />
+          <Property Name="UnlimitedDownloads" Type="bit" Nullable="false" />
+          <Property Name="MaxNumberOfDownloads" Type="int" Nullable="false" />
+          <Property Name="DownloadExpirationDays" Type="int" />
+          <Property Name="DownloadActivationType" Type="int" Nullable="false" />
+          <Property Name="HasSampleDownload" Type="bit" Nullable="false" />
+          <Property Name="SampleDownloadID" Type="int" Nullable="false" />
+          <Property Name="HasUserAgreement" Type="bit" Nullable="false" />
+          <Property Name="UserAgreementText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsRecurring" Type="bit" Nullable="false" />
+          <Property Name="CycleLength" Type="int" Nullable="false" />
+          <Property Name="CyclePeriod" Type="int" Nullable="false" />
+          <Property Name="TotalCycles" Type="int" Nullable="false" />
+          <Property Name="IsShipEnabled" Type="bit" Nullable="false" />
+          <Property Name="IsFreeShipping" Type="bit" Nullable="false" />
+          <Property Name="AdditionalShippingCharge" Type="money" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="bit" Nullable="false" />
+          <Property Name="TaxCategoryID" Type="int" Nullable="false" />
+          <Property Name="ManageInventory" Type="int" Nullable="false" />
+          <Property Name="StockQuantity" Type="int" Nullable="false" />
+          <Property Name="DisplayStockAvailability" Type="bit" Nullable="false" />
+          <Property Name="MinStockQuantity" Type="int" Nullable="false" />
+          <Property Name="LowStockActivityID" Type="int" Nullable="false" />
+          <Property Name="NotifyAdminForQuantityBelow" Type="int" Nullable="false" />
+          <Property Name="AllowOutOfStockOrders" Type="bit" Nullable="false" />
+          <Property Name="OrderMinimumQuantity" Type="int" Nullable="false" />
+          <Property Name="OrderMaximumQuantity" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
+          <Property Name="DisableBuyButton" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="OldPrice" Type="money" Nullable="false" />
+          <Property Name="ProductCost" Type="money" Nullable="false" />
+          <Property Name="CustomerEntersPrice" Type="bit" Nullable="false" />
+          <Property Name="MinimumCustomerEnteredPrice" Type="money" Nullable="false" />
+          <Property Name="MaximumCustomerEnteredPrice" Type="money" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Length" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Width" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Height" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PictureID" Type="int" Nullable="false" />
+          <Property Name="AvailableStartDateTime" Type="datetime" />
+          <Property Name="AvailableEndDateTime" Type="datetime" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIT_Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganisationID" Type="int" Nullable="false" />
+          <Property Name="IsBillingAddress" Type="bit" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StateProvinceID" Type="int" Nullable="false" />
+          <Property Name="ZipPostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" Nullable="false" />
+          <Property Name="AddressName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIT_AuthorisationAmounts">
+          <Key>
+            <PropertyRef Name="AuthorisationAmountId" />
+          </Key>
+          <Property Name="AuthorisationAmountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AuthoriseeId" Type="int" />
+          <Property Name="AuthorisationReq" Type="bit" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="eNumType" Type="int" Nullable="false" />
+          <Property Name="OverridePriceProfile" Type="int" />
+        </EntityType>
+        <EntityType Name="SIT_AuthorisationGroups">
+          <Key>
+            <PropertyRef Name="AuthorisationGroupId" />
+          </Key>
+          <Property Name="AuthorisationGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganisationId" Type="int" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuthoriseeId" Type="int" />
+          <Property Name="Deleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIT_CostCentre">
+          <Key>
+            <PropertyRef Name="CostCentreID" />
+          </Key>
+          <Property Name="CostCentreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CostCentreName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CostCentreMonthlyBudget" Type="money" />
+          <Property Name="SageCostCentreNumber" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="OrganisationID" Type="int" />
+          <Property Name="CostCentreDescription" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SIT_OrderPad">
+          <Key>
+            <PropertyRef Name="OrderPadID" />
+          </Key>
+          <Property Name="OrderPadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderPadName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="OrganisationID" Type="int" />
+          <Property Name="_Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SIT_Organisation">
+          <Key>
+            <PropertyRef Name="OrganisationID" />
+          </Key>
+          <Property Name="OrganisationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Theme" Type="nvarchar(max)" />
+          <Property Name="OrganisationName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SageAccount" Type="nvarchar" MaxLength="8" />
+          <Property Name="PriceProfile" Type="int" />
+          <Property Name="DeliveryProfile" Type="int" />
+          <Property Name="OrganisationGUID" Type="uniqueidentifier" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="OverrideEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Template" Type="bit" />
+          <Property Name="IndividualCostCentres" Type="bit" Nullable="false" />
+          <Property Name="ReturnUniformName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Nop_CustomerAttribute_Nop_Customer">
+          <End Role="Nop_Customer" Type="Self.Nop_Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nop_CustomerAttribute" Type="Self.Nop_CustomerAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Nop_CustomerAttribute">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nop_OrderProductVariant_Nop_Order">
+          <End Role="Nop_Order" Type="Self.Nop_Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nop_OrderProductVariant" Type="Self.Nop_OrderProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Nop_OrderProductVariant">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nop_OrderProductVariant_Nop_ProductVariant">
+          <End Role="Nop_ProductVariant" Type="Self.Nop_ProductVariant" Multiplicity="1" />
+          <End Role="Nop_OrderProductVariant" Type="Self.Nop_OrderProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_ProductVariant">
+              <PropertyRef Name="ProductVariantId" />
+            </Principal>
+            <Dependent Role="Nop_OrderProductVariant">
+              <PropertyRef Name="ProductVariantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nop_ProductVariant_Nop_Product1">
+          <End Role="Nop_Product" Type="Self.Nop_Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nop_ProductVariant" Type="Self.Nop_ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Nop_ProductVariant">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIT_Address_Nop_Organisation1">
+          <End Role="SIT_Organisation" Type="Self.SIT_Organisation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SIT_Address" Type="Self.SIT_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIT_Organisation">
+              <PropertyRef Name="OrganisationID" />
+            </Principal>
+            <Dependent Role="SIT_Address">
+              <PropertyRef Name="OrganisationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Nop_OrderInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderID" Type="int" Mode="InOut" />
+          <Parameter Name="OrderGUID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CustomerID" Type="int" Mode="In" />
+          <Parameter Name="CustomerLanguageID" Type="int" Mode="In" />
+          <Parameter Name="CustomerTaxDisplayTypeID" Type="int" Mode="In" />
+          <Parameter Name="CustomerIP" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrderSubtotalInclTax" Type="money" Mode="In" />
+          <Parameter Name="OrderSubtotalExclTax" Type="money" Mode="In" />
+          <Parameter Name="OrderShippingInclTax" Type="money" Mode="In" />
+          <Parameter Name="OrderShippingExclTax" Type="money" Mode="In" />
+          <Parameter Name="PaymentMethodAdditionalFeeInclTax" Type="money" Mode="In" />
+          <Parameter Name="PaymentMethodAdditionalFeeExclTax" Type="money" Mode="In" />
+          <Parameter Name="OrderTax" Type="money" Mode="In" />
+          <Parameter Name="OrderTotal" Type="money" Mode="In" />
+          <Parameter Name="OrderDiscount" Type="money" Mode="In" />
+          <Parameter Name="OrderSubtotalInclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="OrderSubtotalExclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="OrderShippingInclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="OrderShippingExclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="PaymentMethodAdditionalFeeInclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="PaymentMethodAdditionalFeeExclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="OrderTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="OrderTotalInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="OrderDiscountInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="CheckoutAttributeDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="CheckoutAttributesXML" Type="xml" Mode="In" />
+          <Parameter Name="CustomerCurrencyCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrderWeight" Type="float" Mode="In" />
+          <Parameter Name="AffiliateID" Type="int" Mode="In" />
+          <Parameter Name="OrderStatusID" Type="int" Mode="In" />
+          <Parameter Name="AllowStoringCreditCardNumber" Type="bit" Mode="In" />
+          <Parameter Name="CardType" Type="nvarchar" Mode="In" />
+          <Parameter Name="CardName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CardNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaskedCreditCardNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="CardCVV2" Type="nvarchar" Mode="In" />
+          <Parameter Name="CardExpirationMonth" Type="nvarchar" Mode="In" />
+          <Parameter Name="CardExpirationYear" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+          <Parameter Name="PaymentMethodName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuthorizationTransactionID" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuthorizationTransactionCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="AuthorizationTransactionResult" Type="nvarchar" Mode="In" />
+          <Parameter Name="CaptureTransactionID" Type="nvarchar" Mode="In" />
+          <Parameter Name="CaptureTransactionResult" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubscriptionTransactionID" Type="nvarchar" Mode="In" />
+          <Parameter Name="PurchaseOrderNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentStatusID" Type="int" Mode="In" />
+          <Parameter Name="PaidDate" Type="datetime" Mode="In" />
+          <Parameter Name="BillingFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingPhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingFaxNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingCompany" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingAddress1" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingStateProvince" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingStateProvinceID" Type="int" Mode="In" />
+          <Parameter Name="BillingZipPostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingCountry" Type="nvarchar" Mode="In" />
+          <Parameter Name="BillingCountryID" Type="int" Mode="In" />
+          <Parameter Name="ShippingStatusID" Type="int" Mode="In" />
+          <Parameter Name="ShippingFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingPhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingFaxNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingCompany" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingAddress1" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingStateProvince" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingStateProvinceID" Type="int" Mode="In" />
+          <Parameter Name="ShippingZipPostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingCountry" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingCountryID" Type="int" Mode="In" />
+          <Parameter Name="ShippingMethod" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingRateComputationMethodID" Type="int" Mode="In" />
+          <Parameter Name="ShippedDate" Type="datetime" Mode="In" />
+          <Parameter Name="DeliveryDate" Type="datetime" Mode="In" />
+          <Parameter Name="TrackingNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Deleted" Type="bit" Mode="In" />
+          <Parameter Name="CreatedOn" Type="datetime" Mode="In" />
+          <Parameter Name="EmployeeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Nop_OrderProductVariantInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderProductVariantID" Type="int" Mode="InOut" />
+          <Parameter Name="OrderProductVariantGUID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OrderID" Type="int" Mode="In" />
+          <Parameter Name="ProductVariantID" Type="int" Mode="In" />
+          <Parameter Name="UnitPriceInclTax" Type="money" Mode="In" />
+          <Parameter Name="UnitPriceExclTax" Type="money" Mode="In" />
+          <Parameter Name="PriceInclTax" Type="money" Mode="In" />
+          <Parameter Name="PriceExclTax" Type="money" Mode="In" />
+          <Parameter Name="UnitPriceInclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="UnitPriceExclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="PriceInclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="PriceExclTaxInCustomerCurrency" Type="money" Mode="In" />
+          <Parameter Name="AttributeDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="AttributesXML" Type="xml" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+          <Parameter Name="DiscountAmountInclTax" Type="decimal" Mode="In" />
+          <Parameter Name="DiscountAmountExclTax" Type="decimal" Mode="In" />
+          <Parameter Name="DownloadCount" Type="int" Mode="In" />
+          <Parameter Name="IsDownloadActivated" Type="bit" Mode="In" />
+          <Parameter Name="LicenseDownloadID" Type="int" Mode="In" />
+          <Parameter Name="CostCentreID" Type="int" Mode="In" />
+          <Parameter Name="EmployeeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Nop_ProductLoadAllPaged_REST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryId" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ManufacturerId" Type="int" Mode="In" />
+          <Parameter Name="StoreId" Type="int" Mode="In" />
+          <Parameter Name="VendorId" Type="int" Mode="In" />
+          <Parameter Name="ProductTagId" Type="int" Mode="In" />
+          <Parameter Name="FeaturedProducts" Type="bit" Mode="In" />
+          <Parameter Name="PriceMin" Type="decimal" Mode="In" />
+          <Parameter Name="PriceMax" Type="decimal" Mode="In" />
+          <Parameter Name="Keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="SearchDescriptions" Type="bit" Mode="In" />
+          <Parameter Name="SearchProductTags" Type="bit" Mode="In" />
+          <Parameter Name="UseFullTextSearch" Type="bit" Mode="In" />
+          <Parameter Name="FullTextMode" Type="int" Mode="In" />
+          <Parameter Name="FilteredSpecs" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="LanguageId" Type="int" Mode="In" />
+          <Parameter Name="OrderBy" Type="int" Mode="In" />
+          <Parameter Name="AllowedCustomerRoleIds" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="ShowHidden" Type="bit" Mode="In" />
+          <Parameter Name="LoadFilterableSpecificationAttributeOptionIds" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SIT_AddressesForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganisationId" Type="int" Mode="In" />
+          <Parameter Name="MappingTypeId" Type="int" Mode="In" />
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SIT_CostCentreLoadByCustomerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+          <Parameter Name="MappingTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SIT_GetSalePrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Price" Type="decimal" Mode="InOut" />
+          <Parameter Name="OrganisationID" Type="int" Mode="In" />
+          <Parameter Name="ProfileId" Type="int" Mode="In" />
+          <Parameter Name="AddressID" Type="int" Mode="In" />
+          <Parameter Name="PriceDate" Type="datetime" Mode="In" />
+          <Parameter Name="ProductVariantID" Type="int" Mode="In" />
+          <Parameter Name="MappingTypeID" Type="int" Mode="In" />
+          <Parameter Name="TradePriceCalcType" Type="int" Mode="In" />
+          <Parameter Name="SaveCalculatedPrice" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SIT_OrderPadLoadByCustomerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+          <Parameter Name="MappingTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SIT_ProductVariantLoadByOrderPadID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderPadID" Type="int" Mode="In" />
+          <Parameter Name="MappingTypeId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ExpediteTestPortalModelStoreContainer">
+          <EntitySet Name="Nop_Customer" EntityType="Self.Nop_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nop_CustomerAttribute" EntityType="Self.Nop_CustomerAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nop_Order" EntityType="Self.Nop_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nop_OrderProductVariant" EntityType="Self.Nop_OrderProductVariant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nop_Picture" EntityType="Self.Nop_Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nop_Product" EntityType="Self.Nop_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nop_ProductVariant" EntityType="Self.Nop_ProductVariant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIT_Address" EntityType="Self.SIT_Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIT_AuthorisationAmounts" EntityType="Self.SIT_AuthorisationAmounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIT_AuthorisationGroups" EntityType="Self.SIT_AuthorisationGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIT_CostCentre" EntityType="Self.SIT_CostCentre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIT_OrderPad" EntityType="Self.SIT_OrderPad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIT_Organisation" EntityType="Self.SIT_Organisation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Nop_CustomerAttribute_Nop_Customer" Association="Self.FK_Nop_CustomerAttribute_Nop_Customer">
+            <End Role="Nop_Customer" EntitySet="Nop_Customer" />
+            <End Role="Nop_CustomerAttribute" EntitySet="Nop_CustomerAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nop_OrderProductVariant_Nop_Order" Association="Self.FK_Nop_OrderProductVariant_Nop_Order">
+            <End Role="Nop_Order" EntitySet="Nop_Order" />
+            <End Role="Nop_OrderProductVariant" EntitySet="Nop_OrderProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nop_OrderProductVariant_Nop_ProductVariant" Association="Self.FK_Nop_OrderProductVariant_Nop_ProductVariant">
+            <End Role="Nop_ProductVariant" EntitySet="Nop_ProductVariant" />
+            <End Role="Nop_OrderProductVariant" EntitySet="Nop_OrderProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nop_ProductVariant_Nop_Product1" Association="Self.FK_Nop_ProductVariant_Nop_Product1">
+            <End Role="Nop_Product" EntitySet="Nop_Product" />
+            <End Role="Nop_ProductVariant" EntitySet="Nop_ProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIT_Address_Nop_Organisation1" Association="Self.FK_SIT_Address_Nop_Organisation1">
+            <End Role="SIT_Organisation" EntitySet="SIT_Organisation" />
+            <End Role="SIT_Address" EntitySet="SIT_Address" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExpediteTestPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Nop_Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerGUID" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SaltKey" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AffiliateID" Type="Int32" Nullable="false" />
+          <Property Name="BillingAddressID" Type="Int32" Nullable="false" />
+          <Property Name="ShippingAddressID" Type="Int32" Nullable="false" />
+          <Property Name="LastPaymentMethodID" Type="Int32" Nullable="false" />
+          <Property Name="LastAppliedCouponCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiftCardCouponCodes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CheckoutAttributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="TaxDisplayTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="Boolean" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsGuest" Type="Boolean" Nullable="false" />
+          <Property Name="IsForumModerator" Type="Boolean" Nullable="false" />
+          <Property Name="TotalForumPosts" Type="Int32" Nullable="false" />
+          <Property Name="Signature" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeZoneID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AvatarID" Type="Int32" Nullable="false" />
+          <Property Name="SITOrganisationID" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nop_CustomerAttribute" Relationship="ExpediteTestPortalModel.FK_Nop_CustomerAttribute_Nop_Customer" FromRole="Nop_Customer" ToRole="Nop_CustomerAttribute" />
+        </EntityType>
+        <EntityType Name="Nop_Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderGUID" Type="Guid" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerLanguageID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerTaxDisplayTypeID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderSubtotalInclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderSubtotalExclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderShippingInclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderShippingExclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeInclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeExclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderDiscount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderSubtotalInclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderSubtotalExclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderShippingInclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderShippingExclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeInclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PaymentMethodAdditionalFeeExclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderTotalInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OrderDiscountInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CustomerCurrencyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CheckoutAttributeDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CheckoutAttributesXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderWeight" Type="Double" Nullable="false" />
+          <Property Name="AffiliateID" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+          <Property Name="AllowStoringCreditCardNumber" Type="Boolean" Nullable="false" />
+          <Property Name="CardType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaskedCreditCardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardCVV2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardExpirationMonth" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardExpirationYear" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaymentMethodID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorizationTransactionID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorizationTransactionCode" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorizationTransactionResult" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaptureTransactionID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaptureTransactionResult" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubscriptionTransactionID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PurchaseOrderNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaymentStatusID" Type="Int32" Nullable="false" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="BillingFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingFaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingStateProvince" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingStateProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="BillingZipPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BillingCountryID" Type="Int32" Nullable="false" />
+          <Property Name="ShippingStatusID" Type="Int32" Nullable="false" />
+          <Property Name="ShippingFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingFaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingStateProvince" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingStateProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="ShippingZipPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingCountryID" Type="Int32" Nullable="false" />
+          <Property Name="ShippingMethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShippingRateComputationMethodID" Type="Int32" Nullable="false" />
+          <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+          <Property Name="TrackingNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployeeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Nop_OrderProductVariant" Relationship="Self.FK_Nop_OrderProductVariant_Nop_Order" FromRole="Nop_Order" ToRole="Nop_OrderProductVariant" />
+        </EntityType>
+        <EntityType Name="Nop_OrderProductVariant">
+          <Key>
+            <PropertyRef Name="OrderProductVariantID" />
+          </Key>
+          <Property Name="OrderProductVariantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductVariantID" Type="Int32" Nullable="false" />
+          <Property Name="UnitPriceInclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UnitPriceExclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PriceInclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PriceExclTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UnitPriceInclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UnitPriceExclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PriceInclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PriceExclTaxInCustomerCurrency" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="AttributeDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttributesXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="DiscountAmountInclTax" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DiscountAmountExclTax" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="DownloadCount" Type="Int32" Nullable="false" />
+          <Property Name="OrderProductVariantGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDownloadActivated" Type="Boolean" Nullable="false" />
+          <Property Name="LicenseDownloadID" Type="Int32" Nullable="false" />
+          <Property Name="CostCentreID" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Nop_Order" Relationship="Self.FK_Nop_OrderProductVariant_Nop_Order" FromRole="Nop_OrderProductVariant" ToRole="Nop_Order" />
+          <NavigationProperty Name="Nop_ProductVariant" Relationship="Self.FK_Nop_OrderProductVariant_Nop_ProductVariant" FromRole="Nop_OrderProductVariant" ToRole="Nop_ProductVariant" />
+        </EntityType>
+        <EntityType Name="Nop_Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TemplateID" Type="Int32" Nullable="false" />
+          <Property Name="ShowOnHomePage" Type="Boolean" Nullable="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SEName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AllowCustomerReviews" Type="Boolean" Nullable="false" />
+          <Property Name="AllowCustomerRatings" Type="Boolean" Nullable="false" />
+          <Property Name="RatingSum" Type="Int32" Nullable="false" />
+          <Property Name="TotalRatingVotes" Type="Int32" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Nop_ProductVariant" Relationship="Self.FK_Nop_ProductVariant_Nop_Product1" FromRole="Nop_Product" ToRole="Nop_ProductVariant" />
+        </EntityType>
+        <EntityType Name="Nop_ProductVariant">
+          <Key>
+            <PropertyRef Name="ProductVariantId" />
+          </Key>
+          <Property Name="ProductVariantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SKU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManufacturerPartNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsGiftCard" Type="Boolean" Nullable="false" />
+          <Property Name="IsDownload" Type="Boolean" Nullable="false" />
+          <Property Name="DownloadID" Type="Int32" Nullable="false" />
+          <Property Name="UnlimitedDownloads" Type="Boolean" Nullable="false" />
+          <Property Name="MaxNumberOfDownloads" Type="Int32" Nullable="false" />
+          <Property Name="DownloadExpirationDays" Type="Int32" />
+          <Property Name="DownloadActivationType" Type="Int32" Nullable="false" />
+          <Property Name="HasSampleDownload" Type="Boolean" Nullable="false" />
+          <Property Name="SampleDownloadID" Type="Int32" Nullable="false" />
+          <Property Name="HasUserAgreement" Type="Boolean" Nullable="false" />
+          <Property Name="UserAgreementText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsRecurring" Type="Boolean" Nullable="false" />
+          <Property Name="CycleLength" Type="Int32" Nullable="false" />
+          <Property Name="CyclePeriod" Type="Int32" Nullable="false" />
+          <Property Name="TotalCycles" Type="Int32" Nullable="false" />
+          <Property Name="IsShipEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="IsFreeShipping" Type="Boolean" Nullable="false" />
+          <Property Name="AdditionalShippingCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IsTaxExempt" Type="Boolean" Nullable="false" />
+          <Property Name="TaxCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ManageInventory" Type="Int32" Nullable="false" />
+          <Property Name="StockQuantity" Type="Int32" Nullable="false" />
+          <Property Name="DisplayStockAvailability" Type="Boolean" Nullable="false" />
+          <Property Name="MinStockQuantity" Type="Int32" Nullable="false" />
+          <Property Name="LowStockActivityID" Type="Int32" Nullable="false" />
+          <Property Name="NotifyAdminForQuantityBelow" Type="Int32" Nullable="false" />
+          <Property Name="AllowOutOfStockOrders" Type="Boolean" Nullable="false" />
+          <Property Name="OrderMinimumQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderMaximumQuantity" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <Property Name="DisableBuyButton" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="OldPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CustomerEntersPrice" Type="Boolean" Nullable="false" />
+          <Property Name="MinimumCustomerEnteredPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MaximumCustomerEnteredPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Length" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Width" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Height" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PictureID" Type="Int32" Nullable="false" />
+          <Property Name="AvailableStartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="AvailableEndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Nop_OrderProductVariant" Relationship="Self.FK_Nop_OrderProductVariant_Nop_ProductVariant" FromRole="Nop_ProductVariant" ToRole="Nop_OrderProductVariant" />
+          <NavigationProperty Name="Nop_Product" Relationship="Self.FK_Nop_ProductVariant_Nop_Product1" FromRole="Nop_ProductVariant" ToRole="Nop_Product" />
+        </EntityType>
+        <EntityType Name="SIT_OrderPad">
+          <Key>
+            <PropertyRef Name="OrderPadID" />
+          </Key>
+          <Property Name="OrderPadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderPadName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="OrganisationID" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Nop_OrderProductVariant_Nop_Order">
+          <End Role="Nop_Order" Type="Self.Nop_Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nop_OrderProductVariant" Type="Self.Nop_OrderProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Nop_OrderProductVariant">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nop_OrderProductVariant_Nop_ProductVariant">
+          <End Role="Nop_ProductVariant" Type="Self.Nop_ProductVariant" Multiplicity="1" />
+          <End Role="Nop_OrderProductVariant" Type="Self.Nop_OrderProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_ProductVariant">
+              <PropertyRef Name="ProductVariantId" />
+            </Principal>
+            <Dependent Role="Nop_OrderProductVariant">
+              <PropertyRef Name="ProductVariantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nop_ProductVariant_Nop_Product1">
+          <End Role="Nop_Product" Type="Self.Nop_Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Nop_ProductVariant" Type="Self.Nop_ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Nop_ProductVariant">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExpediteTestPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Nop_Customer" EntityType="Self.Nop_Customer" />
+          <EntitySet Name="Nop_Order" EntityType="Self.Nop_Order" />
+          <EntitySet Name="Nop_OrderProductVariant" EntityType="Self.Nop_OrderProductVariant" />
+          <EntitySet Name="Nop_Product" EntityType="Self.Nop_Product" />
+          <EntitySet Name="Nop_ProductVariant" EntityType="Self.Nop_ProductVariant" />
+          <EntitySet Name="SIT_OrderPad" EntityType="Self.SIT_OrderPad" />
+          <AssociationSet Name="FK_Nop_OrderProductVariant_Nop_Order" Association="Self.FK_Nop_OrderProductVariant_Nop_Order">
+            <End Role="Nop_Order" EntitySet="Nop_Order" />
+            <End Role="Nop_OrderProductVariant" EntitySet="Nop_OrderProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nop_OrderProductVariant_Nop_ProductVariant" Association="Self.FK_Nop_OrderProductVariant_Nop_ProductVariant">
+            <End Role="Nop_ProductVariant" EntitySet="Nop_ProductVariant" />
+            <End Role="Nop_OrderProductVariant" EntitySet="Nop_OrderProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nop_ProductVariant_Nop_Product1" Association="Self.FK_Nop_ProductVariant_Nop_Product1">
+            <End Role="Nop_Product" EntitySet="Nop_Product" />
+            <End Role="Nop_ProductVariant" EntitySet="Nop_ProductVariant" />
+          </AssociationSet>
+          <FunctionImport Name="SIT_OrderPadLoadByCustomerID" EntitySet="SIT_OrderPad" ReturnType="Collection(ExpediteTestPortalModel.SIT_OrderPad)">
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+            <Parameter Name="MappingTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SIT_ProductVariantLoadByOrderPadID" EntitySet="Nop_ProductVariant" ReturnType="Collection(ExpediteTestPortalModel.Nop_ProductVariant)">
+            <Parameter Name="OrderPadID" Mode="In" Type="Int32" />
+            <Parameter Name="MappingTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Nop_CustomerAttribute" EntityType="ExpediteTestPortalModel.Nop_CustomerAttribute" />
+          <EntitySet Name="Nop_Picture" EntityType="ExpediteTestPortalModel.Nop_Picture" />
+          <AssociationSet Name="FK_Nop_CustomerAttribute_Nop_Customer" Association="ExpediteTestPortalModel.FK_Nop_CustomerAttribute_Nop_Customer">
+            <End Role="Nop_Customer" EntitySet="Nop_Customer" />
+            <End Role="Nop_CustomerAttribute" EntitySet="Nop_CustomerAttribute" />
+          </AssociationSet>
+          <FunctionImport Name="Nop_ProductLoadAllPaged_REST" EntitySet="Nop_ProductVariant" ReturnType="Collection(ExpediteTestPortalModel.Nop_ProductVariant)">
+            <Parameter Name="CategoryId" Mode="In" Type="String" />
+            <Parameter Name="ManufacturerId" Mode="In" Type="Int32" />
+            <Parameter Name="StoreId" Mode="In" Type="Int32" />
+            <Parameter Name="VendorId" Mode="In" Type="Int32" />
+            <Parameter Name="ProductTagId" Mode="In" Type="Int32" />
+            <Parameter Name="FeaturedProducts" Mode="In" Type="Boolean" />
+            <Parameter Name="PriceMin" Mode="In" Type="Decimal" />
+            <Parameter Name="PriceMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Keywords" Mode="In" Type="String" />
+            <Parameter Name="SearchDescriptions" Mode="In" Type="Boolean" />
+            <Parameter Name="SearchProductTags" Mode="In" Type="Boolean" />
+            <Parameter Name="UseFullTextSearch" Mode="In" Type="Boolean" />
+            <Parameter Name="FullTextMode" Mode="In" Type="Int32" />
+            <Parameter Name="FilteredSpecs" Mode="In" Type="String" />
+            <Parameter Name="LanguageId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderBy" Mode="In" Type="Int32" />
+            <Parameter Name="AllowedCustomerRoleIds" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="ShowHidden" Mode="In" Type="Boolean" />
+            <Parameter Name="LoadFilterableSpecificationAttributeOptionIds" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Nop_OrderInsert">
+            <Parameter Name="OrderID" Mode="InOut" Type="Int32" />
+            <Parameter Name="OrderGUID" Mode="In" Type="Guid" />
+            <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+            <Parameter Name="CustomerLanguageID" Mode="In" Type="Int32" />
+            <Parameter Name="CustomerTaxDisplayTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="CustomerIP" Mode="In" Type="String" />
+            <Parameter Name="OrderSubtotalInclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderSubtotalExclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderShippingInclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderShippingExclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="PaymentMethodAdditionalFeeInclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="PaymentMethodAdditionalFeeExclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderTax" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderTotal" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderDiscount" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderSubtotalInclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderSubtotalExclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderShippingInclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderShippingExclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="PaymentMethodAdditionalFeeInclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="PaymentMethodAdditionalFeeExclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderTotalInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="OrderDiscountInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="CheckoutAttributeDescription" Mode="In" Type="String" />
+            <Parameter Name="CheckoutAttributesXML" Mode="In" Type="String" />
+            <Parameter Name="CustomerCurrencyCode" Mode="In" Type="String" />
+            <Parameter Name="OrderWeight" Mode="In" Type="Double" />
+            <Parameter Name="AffiliateID" Mode="In" Type="Int32" />
+            <Parameter Name="OrderStatusID" Mode="In" Type="Int32" />
+            <Parameter Name="AllowStoringCreditCardNumber" Mode="In" Type="Boolean" />
+            <Parameter Name="CardType" Mode="In" Type="String" />
+            <Parameter Name="CardName" Mode="In" Type="String" />
+            <Parameter Name="CardNumber" Mode="In" Type="String" />
+            <Parameter Name="MaskedCreditCardNumber" Mode="In" Type="String" />
+            <Parameter Name="CardCVV2" Mode="In" Type="String" />
+            <Parameter Name="CardExpirationMonth" Mode="In" Type="String" />
+            <Parameter Name="CardExpirationYear" Mode="In" Type="String" />
+            <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+            <Parameter Name="PaymentMethodName" Mode="In" Type="String" />
+            <Parameter Name="AuthorizationTransactionID" Mode="In" Type="String" />
+            <Parameter Name="AuthorizationTransactionCode" Mode="In" Type="String" />
+            <Parameter Name="AuthorizationTransactionResult" Mode="In" Type="String" />
+            <Parameter Name="CaptureTransactionID" Mode="In" Type="String" />
+            <Parameter Name="CaptureTransactionResult" Mode="In" Type="String" />
+            <Parameter Name="SubscriptionTransactionID" Mode="In" Type="String" />
+            <Parameter Name="PurchaseOrderNumber" Mode="In" Type="String" />
+            <Parameter Name="PaymentStatusID" Mode="In" Type="Int32" />
+            <Parameter Name="PaidDate" Mode="In" Type="DateTime" />
+            <Parameter Name="BillingFirstName" Mode="In" Type="String" />
+            <Parameter Name="BillingLastName" Mode="In" Type="String" />
+            <Parameter Name="BillingPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="BillingEmail" Mode="In" Type="String" />
+            <Parameter Name="BillingFaxNumber" Mode="In" Type="String" />
+            <Parameter Name="BillingCompany" Mode="In" Type="String" />
+            <Parameter Name="BillingAddress1" Mode="In" Type="String" />
+            <Parameter Name="BillingAddress2" Mode="In" Type="String" />
+            <Parameter Name="BillingCity" Mode="In" Type="String" />
+            <Parameter Name="BillingStateProvince" Mode="In" Type="String" />
+            <Parameter Name="BillingStateProvinceID" Mode="In" Type="Int32" />
+            <Parameter Name="BillingZipPostalCode" Mode="In" Type="String" />
+            <Parameter Name="BillingCountry" Mode="In" Type="String" />
+            <Parameter Name="BillingCountryID" Mode="In" Type="Int32" />
+            <Parameter Name="ShippingStatusID" Mode="In" Type="Int32" />
+            <Parameter Name="ShippingFirstName" Mode="In" Type="String" />
+            <Parameter Name="ShippingLastName" Mode="In" Type="String" />
+            <Parameter Name="ShippingPhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="ShippingEmail" Mode="In" Type="String" />
+            <Parameter Name="ShippingFaxNumber" Mode="In" Type="String" />
+            <Parameter Name="ShippingCompany" Mode="In" Type="String" />
+            <Parameter Name="ShippingAddress1" Mode="In" Type="String" />
+            <Parameter Name="ShippingAddress2" Mode="In" Type="String" />
+            <Parameter Name="ShippingCity" Mode="In" Type="String" />
+            <Parameter Name="ShippingStateProvince" Mode="In" Type="String" />
+            <Parameter Name="ShippingStateProvinceID" Mode="In" Type="Int32" />
+            <Parameter Name="ShippingZipPostalCode" Mode="In" Type="String" />
+            <Parameter Name="ShippingCountry" Mode="In" Type="String" />
+            <Parameter Name="ShippingCountryID" Mode="In" Type="Int32" />
+            <Parameter Name="ShippingMethod" Mode="In" Type="String" />
+            <Parameter Name="ShippingRateComputationMethodID" Mode="In" Type="Int32" />
+            <Parameter Name="ShippedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DeliveryDate" Mode="In" Type="DateTime" />
+            <Parameter Name="TrackingNumber" Mode="In" Type="String" />
+            <Parameter Name="Deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="CreatedOn" Mode="In" Type="DateTime" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Nop_OrderProductVariantInsert">
+            <Parameter Name="OrderProductVariantID" Mode="InOut" Type="Int32" />
+            <Parameter Name="OrderProductVariantGUID" Mode="In" Type="Guid" />
+            <Parameter Name="OrderID" Mode="In" Type="Int32" />
+            <Parameter Name="ProductVariantID" Mode="In" Type="Int32" />
+            <Parameter Name="UnitPriceInclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="UnitPriceExclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="PriceInclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="PriceExclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="UnitPriceInclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="UnitPriceExclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="PriceInclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="PriceExclTaxInCustomerCurrency" Mode="In" Type="Decimal" />
+            <Parameter Name="AttributeDescription" Mode="In" Type="String" />
+            <Parameter Name="AttributesXML" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+            <Parameter Name="DiscountAmountInclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="DiscountAmountExclTax" Mode="In" Type="Decimal" />
+            <Parameter Name="DownloadCount" Mode="In" Type="Int32" />
+            <Parameter Name="IsDownloadActivated" Mode="In" Type="Boolean" />
+            <Parameter Name="LicenseDownloadID" Mode="In" Type="Int32" />
+            <Parameter Name="CostCentreID" Mode="In" Type="Int32" />
+            <Parameter Name="EmployeeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SIT_GetSalePrice">
+            <Parameter Name="Price" Mode="InOut" Type="Decimal" />
+            <Parameter Name="OrganisationID" Mode="In" Type="Int32" />
+            <Parameter Name="ProfileId" Mode="In" Type="Int32" />
+            <Parameter Name="AddressID" Mode="In" Type="Int32" />
+            <Parameter Name="PriceDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProductVariantID" Mode="In" Type="Int32" />
+            <Parameter Name="MappingTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="TradePriceCalcType" Mode="In" Type="Int32" />
+            <Parameter Name="SaveCalculatedPrice" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="SIT_CostCentre" EntityType="ExpediteTestPortalModel.SIT_CostCentre" />
+          <FunctionImport Name="SIT_CostCentreLoadByCustomerID" EntitySet="SIT_CostCentre" ReturnType="Collection(ExpediteTestPortalModel.SIT_CostCentre)">
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+            <Parameter Name="MappingTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SIT_Address" EntityType="ExpediteTestPortalModel.SIT_Address" />
+          <FunctionImport Name="SIT_AddressesForUser" EntitySet="SIT_Address" ReturnType="Collection(ExpediteTestPortalModel.SIT_Address)">
+            <Parameter Name="OrganisationId" Mode="In" Type="Int32" />
+            <Parameter Name="MappingTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SIT_Organisation" EntityType="ExpediteTestPortalModel.SIT_Organisation" />
+          <AssociationSet Name="FK_SIT_Address_Nop_Organisation1" Association="ExpediteTestPortalModel.FK_SIT_Address_Nop_Organisation1">
+            <End Role="SIT_Organisation" EntitySet="SIT_Organisation" />
+            <End Role="SIT_Address" EntitySet="SIT_Address" />
+          </AssociationSet>
+          <EntitySet Name="SIT_AuthorisationAmounts" EntityType="ExpediteTestPortalModel.SIT_AuthorisationAmounts" />
+          <EntitySet Name="SIT_AuthorisationGroups" EntityType="ExpediteTestPortalModel.SIT_AuthorisationGroups" />
+        </EntityContainer>
+        <ComplexType Name="SIT_OrderPadLoadByCustomerID_Result">
+          <Property Type="Int32" Name="OrderPadID" Nullable="false" />
+          <Property Type="String" Name="OrderPadName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Deleted" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationID" Nullable="true" />
+          <Property Type="String" Name="C_Type" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SIT_ProductVariantLoadByOrderPadID_Result">
+          <Property Type="Int32" Name="ProductVariantId" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="400" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" />
+          <Property Type="String" Name="AdminComment" Nullable="false" MaxLength="4000" />
+          <Property Type="String" Name="ManufacturerPartNumber" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsGiftCard" Nullable="false" />
+          <Property Type="Boolean" Name="IsDownload" Nullable="false" />
+          <Property Type="Int32" Name="DownloadID" Nullable="false" />
+          <Property Type="Boolean" Name="UnlimitedDownloads" Nullable="false" />
+          <Property Type="Int32" Name="MaxNumberOfDownloads" Nullable="false" />
+          <Property Type="Int32" Name="DownloadExpirationDays" Nullable="true" />
+          <Property Type="Int32" Name="DownloadActivationType" Nullable="false" />
+          <Property Type="Boolean" Name="HasSampleDownload" Nullable="false" />
+          <Property Type="Int32" Name="SampleDownloadID" Nullable="false" />
+          <Property Type="Boolean" Name="HasUserAgreement" Nullable="false" />
+          <Property Type="String" Name="UserAgreementText" Nullable="false" />
+          <Property Type="Boolean" Name="IsRecurring" Nullable="false" />
+          <Property Type="Int32" Name="CycleLength" Nullable="false" />
+          <Property Type="Int32" Name="CyclePeriod" Nullable="false" />
+          <Property Type="Int32" Name="TotalCycles" Nullable="false" />
+          <Property Type="Boolean" Name="IsShipEnabled" Nullable="false" />
+          <Property Type="Boolean" Name="IsFreeShipping" Nullable="false" />
+          <Property Type="Decimal" Name="AdditionalShippingCharge" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="IsTaxExempt" Nullable="false" />
+          <Property Type="Int32" Name="TaxCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="ManageInventory" Nullable="false" />
+          <Property Type="Int32" Name="StockQuantity" Nullable="false" />
+          <Property Type="Boolean" Name="DisplayStockAvailability" Nullable="false" />
+          <Property Type="Int32" Name="MinStockQuantity" Nullable="false" />
+          <Property Type="Int32" Name="LowStockActivityID" Nullable="false" />
+          <Property Type="Int32" Name="NotifyAdminForQuantityBelow" Nullable="false" />
+          <Property Type="Boolean" Name="AllowOutOfStockOrders" Nullable="false" />
+          <Property Type="Int32" Name="OrderMinimumQuantity" Nullable="false" />
+          <Property Type="Int32" Name="OrderMaximumQuantity" Nullable="false" />
+          <Property Type="Int32" Name="WarehouseID" Nullable="false" />
+          <Property Type="Boolean" Name="DisableBuyButton" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="OldPrice" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="ProductCost" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="CustomerEntersPrice" Nullable="false" />
+          <Property Type="Decimal" Name="MinimumCustomerEnteredPrice" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="MaximumCustomerEnteredPrice" Nullable="false" Precision="19" />
+          <Property Type="Double" Name="Weight" Nullable="false" />
+          <Property Type="Decimal" Name="Length" Nullable="false" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="Width" Nullable="false" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="Height" Nullable="false" Precision="18" Scale="4" />
+          <Property Type="Int32" Name="PictureID" Nullable="false" />
+          <Property Type="DateTime" Name="AvailableStartDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="AvailableEndDateTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Published" Nullable="false" />
+          <Property Type="Boolean" Name="Deleted" Nullable="false" />
+          <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Nop_CustomerAttribute">
+          <Key>
+            <PropertyRef Name="CustomerAttributeId" />
+          </Key>
+          <Property Name="CustomerAttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nop_Customer" Relationship="ExpediteTestPortalModel.FK_Nop_CustomerAttribute_Nop_Customer" FromRole="Nop_CustomerAttribute" ToRole="Nop_Customer" />
+        </EntityType>
+        <EntityType Name="Nop_Picture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PictureBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Extension" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsNew" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Nop_CustomerAttribute_Nop_Customer">
+          <End Type="ExpediteTestPortalModel.Nop_Customer" Role="Nop_Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ExpediteTestPortalModel.Nop_CustomerAttribute" Role="Nop_CustomerAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nop_Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Nop_CustomerAttribute">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SIT_CostCentre">
+          <Key>
+            <PropertyRef Name="CostCentreID" />
+          </Key>
+          <Property Name="CostCentreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CostCentreName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CostCentreMonthlyBudget" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SageCostCentreNumber" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="OrganisationID" Type="Int32" />
+          <Property Name="CostCentreDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="SIT_CostCentreLoadByCustomerID_Result">
+          <Property Type="Int32" Name="CostCentreID" Nullable="false" />
+          <Property Type="String" Name="CostCentreName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="CostCentreMonthlyBudget" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SageCostCentreNumber" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Deleted" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationID" Nullable="true" />
+          <Property Type="String" Name="CostCentreDescription" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SIT_CostCentresForAddress_Result">
+          <Property Type="Int32" Name="CostCentreID" Nullable="false" />
+          <Property Type="String" Name="CostCentreName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="CostCentreMonthlyBudget" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SageCostCentreNumber" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Deleted" Nullable="true" />
+          <Property Type="Boolean" Name="Active" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationID" Nullable="true" />
+          <Property Type="String" Name="CostCentreDescription" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="SIT_Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganisationID" Type="Int32" Nullable="false" />
+          <Property Name="IsBillingAddress" Type="Boolean" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StateProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="ZipPostalCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddressName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SIT_Organisation" Relationship="ExpediteTestPortalModel.FK_SIT_Address_Nop_Organisation1" FromRole="SIT_Address" ToRole="SIT_Organisation" />
+        </EntityType>
+        <ComplexType Name="SIT_AddressesForUser_Result">
+          <Property Type="Int32" Name="AddressId" Nullable="false" />
+          <Property Type="Int32" Name="OrganisationID" Nullable="false" />
+          <Property Type="Boolean" Name="IsBillingAddress" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="FaxNumber" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Company" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Address1" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Address2" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="StateProvinceID" Nullable="false" />
+          <Property Type="String" Name="ZipPostalCode" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="CountryID" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="AddressName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Deleted" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="SIT_Organisation">
+          <Key>
+            <PropertyRef Name="OrganisationID" />
+          </Key>
+          <Property Name="OrganisationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Theme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrganisationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SageAccount" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="PriceProfile" Type="Int32" />
+          <Property Name="DeliveryProfile" Type="Int32" />
+          <Property Name="OrganisationGUID" Type="Guid" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="OverrideEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Template" Type="Boolean" />
+          <Property Name="IndividualCostCentres" Type="Boolean" Nullable="false" />
+          <Property Name="ReturnUniformName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SIT_Address" Relationship="ExpediteTestPortalModel.FK_SIT_Address_Nop_Organisation1" FromRole="SIT_Organisation" ToRole="SIT_Address" />
+        </EntityType>
+        <Association Name="FK_SIT_Address_Nop_Organisation1">
+          <End Type="ExpediteTestPortalModel.SIT_Organisation" Role="SIT_Organisation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ExpediteTestPortalModel.SIT_Address" Role="SIT_Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIT_Organisation">
+              <PropertyRef Name="OrganisationID" />
+            </Principal>
+            <Dependent Role="SIT_Address">
+              <PropertyRef Name="OrganisationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SIT_AuthorisationAmounts">
+          <Key>
+            <PropertyRef Name="AuthorisationAmountId" />
+          </Key>
+          <Property Name="AuthorisationAmountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AuthoriseeId" Type="Int32" />
+          <Property Name="AuthorisationReq" Type="Boolean" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="eNumType" Type="Int32" Nullable="false" />
+          <Property Name="OverridePriceProfile" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SIT_AuthorisationGroups">
+          <Key>
+            <PropertyRef Name="AuthorisationGroupId" />
+          </Key>
+          <Property Name="AuthorisationGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganisationId" Type="Int32" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuthoriseeId" Type="Int32" />
+          <Property Name="Deleted" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExpediteTestPortalModelStoreContainer" CdmEntityContainer="ExpediteTestPortalEntities">
+          <EntitySetMapping Name="Nop_Customer">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_Customer">
+              <MappingFragment StoreEntitySet="Nop_Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerGUID" ColumnName="CustomerGUID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
+                <ScalarProperty Name="AffiliateID" ColumnName="AffiliateID" />
+                <ScalarProperty Name="BillingAddressID" ColumnName="BillingAddressID" />
+                <ScalarProperty Name="ShippingAddressID" ColumnName="ShippingAddressID" />
+                <ScalarProperty Name="LastPaymentMethodID" ColumnName="LastPaymentMethodID" />
+                <ScalarProperty Name="LastAppliedCouponCode" ColumnName="LastAppliedCouponCode" />
+                <ScalarProperty Name="GiftCardCouponCodes" ColumnName="GiftCardCouponCodes" />
+                <ScalarProperty Name="CheckoutAttributes" ColumnName="CheckoutAttributes" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="TaxDisplayTypeID" ColumnName="TaxDisplayTypeID" />
+                <ScalarProperty Name="IsTaxExempt" ColumnName="IsTaxExempt" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsGuest" ColumnName="IsGuest" />
+                <ScalarProperty Name="IsForumModerator" ColumnName="IsForumModerator" />
+                <ScalarProperty Name="TotalForumPosts" ColumnName="TotalForumPosts" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="AvatarID" ColumnName="AvatarID" />
+                <ScalarProperty Name="SITOrganisationID" ColumnName="SITOrganisationID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nop_Order">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_Order">
+              <MappingFragment StoreEntitySet="Nop_Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderGUID" ColumnName="OrderGUID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerLanguageID" ColumnName="CustomerLanguageID" />
+                <ScalarProperty Name="CustomerTaxDisplayTypeID" ColumnName="CustomerTaxDisplayTypeID" />
+                <ScalarProperty Name="CustomerIP" ColumnName="CustomerIP" />
+                <ScalarProperty Name="OrderSubtotalInclTax" ColumnName="OrderSubtotalInclTax" />
+                <ScalarProperty Name="OrderSubtotalExclTax" ColumnName="OrderSubtotalExclTax" />
+                <ScalarProperty Name="OrderShippingInclTax" ColumnName="OrderShippingInclTax" />
+                <ScalarProperty Name="OrderShippingExclTax" ColumnName="OrderShippingExclTax" />
+                <ScalarProperty Name="PaymentMethodAdditionalFeeInclTax" ColumnName="PaymentMethodAdditionalFeeInclTax" />
+                <ScalarProperty Name="PaymentMethodAdditionalFeeExclTax" ColumnName="PaymentMethodAdditionalFeeExclTax" />
+                <ScalarProperty Name="OrderTax" ColumnName="OrderTax" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="OrderDiscount" ColumnName="OrderDiscount" />
+                <ScalarProperty Name="OrderSubtotalInclTaxInCustomerCurrency" ColumnName="OrderSubtotalInclTaxInCustomerCurrency" />
+                <ScalarProperty Name="OrderSubtotalExclTaxInCustomerCurrency" ColumnName="OrderSubtotalExclTaxInCustomerCurrency" />
+                <ScalarProperty Name="OrderShippingInclTaxInCustomerCurrency" ColumnName="OrderShippingInclTaxInCustomerCurrency" />
+                <ScalarProperty Name="OrderShippingExclTaxInCustomerCurrency" ColumnName="OrderShippingExclTaxInCustomerCurrency" />
+                <ScalarProperty Name="PaymentMethodAdditionalFeeInclTaxInCustomerCurrency" ColumnName="PaymentMethodAdditionalFeeInclTaxInCustomerCurrency" />
+                <ScalarProperty Name="PaymentMethodAdditionalFeeExclTaxInCustomerCurrency" ColumnName="PaymentMethodAdditionalFeeExclTaxInCustomerCurrency" />
+                <ScalarProperty Name="OrderTaxInCustomerCurrency" ColumnName="OrderTaxInCustomerCurrency" />
+                <ScalarProperty Name="OrderTotalInCustomerCurrency" ColumnName="OrderTotalInCustomerCurrency" />
+                <ScalarProperty Name="OrderDiscountInCustomerCurrency" ColumnName="OrderDiscountInCustomerCurrency" />
+                <ScalarProperty Name="CustomerCurrencyCode" ColumnName="CustomerCurrencyCode" />
+                <ScalarProperty Name="CheckoutAttributeDescription" ColumnName="CheckoutAttributeDescription" />
+                <ScalarProperty Name="CheckoutAttributesXML" ColumnName="CheckoutAttributesXML" />
+                <ScalarProperty Name="OrderWeight" ColumnName="OrderWeight" />
+                <ScalarProperty Name="AffiliateID" ColumnName="AffiliateID" />
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+                <ScalarProperty Name="AllowStoringCreditCardNumber" ColumnName="AllowStoringCreditCardNumber" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="MaskedCreditCardNumber" ColumnName="MaskedCreditCardNumber" />
+                <ScalarProperty Name="CardCVV2" ColumnName="CardCVV2" />
+                <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+                <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="PaymentMethodName" ColumnName="PaymentMethodName" />
+                <ScalarProperty Name="AuthorizationTransactionID" ColumnName="AuthorizationTransactionID" />
+                <ScalarProperty Name="AuthorizationTransactionCode" ColumnName="AuthorizationTransactionCode" />
+                <ScalarProperty Name="AuthorizationTransactionResult" ColumnName="AuthorizationTransactionResult" />
+                <ScalarProperty Name="CaptureTransactionID" ColumnName="CaptureTransactionID" />
+                <ScalarProperty Name="CaptureTransactionResult" ColumnName="CaptureTransactionResult" />
+                <ScalarProperty Name="SubscriptionTransactionID" ColumnName="SubscriptionTransactionID" />
+                <ScalarProperty Name="PurchaseOrderNumber" ColumnName="PurchaseOrderNumber" />
+                <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="BillingFirstName" ColumnName="BillingFirstName" />
+                <ScalarProperty Name="BillingLastName" ColumnName="BillingLastName" />
+                <ScalarProperty Name="BillingPhoneNumber" ColumnName="BillingPhoneNumber" />
+                <ScalarProperty Name="BillingEmail" ColumnName="BillingEmail" />
+                <ScalarProperty Name="BillingFaxNumber" ColumnName="BillingFaxNumber" />
+                <ScalarProperty Name="BillingCompany" ColumnName="BillingCompany" />
+                <ScalarProperty Name="BillingAddress1" ColumnName="BillingAddress1" />
+                <ScalarProperty Name="BillingAddress2" ColumnName="BillingAddress2" />
+                <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+                <ScalarProperty Name="BillingStateProvince" ColumnName="BillingStateProvince" />
+                <ScalarProperty Name="BillingStateProvinceID" ColumnName="BillingStateProvinceID" />
+                <ScalarProperty Name="BillingZipPostalCode" ColumnName="BillingZipPostalCode" />
+                <ScalarProperty Name="BillingCountry" ColumnName="BillingCountry" />
+                <ScalarProperty Name="BillingCountryID" ColumnName="BillingCountryID" />
+                <ScalarProperty Name="ShippingStatusID" ColumnName="ShippingStatusID" />
+                <ScalarProperty Name="ShippingFirstName" ColumnName="ShippingFirstName" />
+                <ScalarProperty Name="ShippingLastName" ColumnName="ShippingLastName" />
+                <ScalarProperty Name="ShippingPhoneNumber" ColumnName="ShippingPhoneNumber" />
+                <ScalarProperty Name="ShippingEmail" ColumnName="ShippingEmail" />
+                <ScalarProperty Name="ShippingFaxNumber" ColumnName="ShippingFaxNumber" />
+                <ScalarProperty Name="ShippingCompany" ColumnName="ShippingCompany" />
+                <ScalarProperty Name="ShippingAddress1" ColumnName="ShippingAddress1" />
+                <ScalarProperty Name="ShippingAddress2" ColumnName="ShippingAddress2" />
+                <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+                <ScalarProperty Name="ShippingStateProvince" ColumnName="ShippingStateProvince" />
+                <ScalarProperty Name="ShippingStateProvinceID" ColumnName="ShippingStateProvinceID" />
+                <ScalarProperty Name="ShippingZipPostalCode" ColumnName="ShippingZipPostalCode" />
+                <ScalarProperty Name="ShippingCountry" ColumnName="ShippingCountry" />
+                <ScalarProperty Name="ShippingCountryID" ColumnName="ShippingCountryID" />
+                <ScalarProperty Name="ShippingMethod" ColumnName="ShippingMethod" />
+                <ScalarProperty Name="ShippingRateComputationMethodID" ColumnName="ShippingRateComputationMethodID" />
+                <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+                <ScalarProperty Name="TrackingNumber" ColumnName="TrackingNumber" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nop_OrderProductVariant">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_OrderProductVariant">
+              <MappingFragment StoreEntitySet="Nop_OrderProductVariant">
+                <ScalarProperty Name="OrderProductVariantID" ColumnName="OrderProductVariantID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductVariantID" ColumnName="ProductVariantID" />
+                <ScalarProperty Name="UnitPriceInclTax" ColumnName="UnitPriceInclTax" />
+                <ScalarProperty Name="UnitPriceExclTax" ColumnName="UnitPriceExclTax" />
+                <ScalarProperty Name="PriceInclTax" ColumnName="PriceInclTax" />
+                <ScalarProperty Name="PriceExclTax" ColumnName="PriceExclTax" />
+                <ScalarProperty Name="UnitPriceInclTaxInCustomerCurrency" ColumnName="UnitPriceInclTaxInCustomerCurrency" />
+                <ScalarProperty Name="UnitPriceExclTaxInCustomerCurrency" ColumnName="UnitPriceExclTaxInCustomerCurrency" />
+                <ScalarProperty Name="PriceInclTaxInCustomerCurrency" ColumnName="PriceInclTaxInCustomerCurrency" />
+                <ScalarProperty Name="PriceExclTaxInCustomerCurrency" ColumnName="PriceExclTaxInCustomerCurrency" />
+                <ScalarProperty Name="AttributeDescription" ColumnName="AttributeDescription" />
+                <ScalarProperty Name="AttributesXML" ColumnName="AttributesXML" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="DiscountAmountInclTax" ColumnName="DiscountAmountInclTax" />
+                <ScalarProperty Name="DiscountAmountExclTax" ColumnName="DiscountAmountExclTax" />
+                <ScalarProperty Name="DownloadCount" ColumnName="DownloadCount" />
+                <ScalarProperty Name="OrderProductVariantGUID" ColumnName="OrderProductVariantGUID" />
+                <ScalarProperty Name="IsDownloadActivated" ColumnName="IsDownloadActivated" />
+                <ScalarProperty Name="LicenseDownloadID" ColumnName="LicenseDownloadID" />
+                <ScalarProperty Name="CostCentreID" ColumnName="CostCentreID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nop_Product">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_Product">
+              <MappingFragment StoreEntitySet="Nop_Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+                <ScalarProperty Name="ShowOnHomePage" ColumnName="ShowOnHomePage" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="SEName" ColumnName="SEName" />
+                <ScalarProperty Name="AllowCustomerReviews" ColumnName="AllowCustomerReviews" />
+                <ScalarProperty Name="AllowCustomerRatings" ColumnName="AllowCustomerRatings" />
+                <ScalarProperty Name="RatingSum" ColumnName="RatingSum" />
+                <ScalarProperty Name="TotalRatingVotes" ColumnName="TotalRatingVotes" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nop_ProductVariant">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_ProductVariant">
+              <MappingFragment StoreEntitySet="Nop_ProductVariant">
+                <ScalarProperty Name="ProductVariantId" ColumnName="ProductVariantId" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+                <ScalarProperty Name="ManufacturerPartNumber" ColumnName="ManufacturerPartNumber" />
+                <ScalarProperty Name="IsGiftCard" ColumnName="IsGiftCard" />
+                <ScalarProperty Name="IsDownload" ColumnName="IsDownload" />
+                <ScalarProperty Name="DownloadID" ColumnName="DownloadID" />
+                <ScalarProperty Name="UnlimitedDownloads" ColumnName="UnlimitedDownloads" />
+                <ScalarProperty Name="MaxNumberOfDownloads" ColumnName="MaxNumberOfDownloads" />
+                <ScalarProperty Name="DownloadExpirationDays" ColumnName="DownloadExpirationDays" />
+                <ScalarProperty Name="DownloadActivationType" ColumnName="DownloadActivationType" />
+                <ScalarProperty Name="HasSampleDownload" ColumnName="HasSampleDownload" />
+                <ScalarProperty Name="SampleDownloadID" ColumnName="SampleDownloadID" />
+                <ScalarProperty Name="HasUserAgreement" ColumnName="HasUserAgreement" />
+                <ScalarProperty Name="UserAgreementText" ColumnName="UserAgreementText" />
+                <ScalarProperty Name="IsRecurring" ColumnName="IsRecurring" />
+                <ScalarProperty Name="CycleLength" ColumnName="CycleLength" />
+                <ScalarProperty Name="CyclePeriod" ColumnName="CyclePeriod" />
+                <ScalarProperty Name="TotalCycles" ColumnName="TotalCycles" />
+                <ScalarProperty Name="IsShipEnabled" ColumnName="IsShipEnabled" />
+                <ScalarProperty Name="IsFreeShipping" ColumnName="IsFreeShipping" />
+                <ScalarProperty Name="AdditionalShippingCharge" ColumnName="AdditionalShippingCharge" />
+                <ScalarProperty Name="IsTaxExempt" ColumnName="IsTaxExempt" />
+                <ScalarProperty Name="TaxCategoryID" ColumnName="TaxCategoryID" />
+                <ScalarProperty Name="ManageInventory" ColumnName="ManageInventory" />
+                <ScalarProperty Name="StockQuantity" ColumnName="StockQuantity" />
+                <ScalarProperty Name="DisplayStockAvailability" ColumnName="DisplayStockAvailability" />
+                <ScalarProperty Name="MinStockQuantity" ColumnName="MinStockQuantity" />
+                <ScalarProperty Name="LowStockActivityID" ColumnName="LowStockActivityID" />
+                <ScalarProperty Name="NotifyAdminForQuantityBelow" ColumnName="NotifyAdminForQuantityBelow" />
+                <ScalarProperty Name="AllowOutOfStockOrders" ColumnName="AllowOutOfStockOrders" />
+                <ScalarProperty Name="OrderMinimumQuantity" ColumnName="OrderMinimumQuantity" />
+                <ScalarProperty Name="OrderMaximumQuantity" ColumnName="OrderMaximumQuantity" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="DisableBuyButton" ColumnName="DisableBuyButton" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
+                <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+                <ScalarProperty Name="CustomerEntersPrice" ColumnName="CustomerEntersPrice" />
+                <ScalarProperty Name="MinimumCustomerEnteredPrice" ColumnName="MinimumCustomerEnteredPrice" />
+                <ScalarProperty Name="MaximumCustomerEnteredPrice" ColumnName="MaximumCustomerEnteredPrice" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="AvailableStartDateTime" ColumnName="AvailableStartDateTime" />
+                <ScalarProperty Name="AvailableEndDateTime" ColumnName="AvailableEndDateTime" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIT_OrderPad">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.SIT_OrderPad">
+              <MappingFragment StoreEntitySet="SIT_OrderPad">
+                <ScalarProperty Name="OrderPadID" ColumnName="OrderPadID" />
+                <ScalarProperty Name="OrderPadName" ColumnName="OrderPadName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="OrganisationID" ColumnName="OrganisationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIT_OrderPadLoadByCustomerID" FunctionName="ExpediteTestPortalModel.Store.SIT_OrderPadLoadByCustomerID">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SIT_ProductVariantLoadByOrderPadID" FunctionName="ExpediteTestPortalModel.Store.SIT_ProductVariantLoadByOrderPadID">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Nop_CustomerAttribute">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_CustomerAttribute">
+              <MappingFragment StoreEntitySet="Nop_CustomerAttribute">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerAttributeId" ColumnName="CustomerAttributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nop_Picture">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.Nop_Picture">
+              <MappingFragment StoreEntitySet="Nop_Picture">
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="PictureBinary" ColumnName="PictureBinary" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Nop_ProductLoadAllPaged_REST" FunctionName="ExpediteTestPortalModel.Store.Nop_ProductLoadAllPaged_REST" />
+          <FunctionImportMapping FunctionImportName="Nop_OrderInsert" FunctionName="ExpediteTestPortalModel.Store.Nop_OrderInsert" />
+          <FunctionImportMapping FunctionImportName="Nop_OrderProductVariantInsert" FunctionName="ExpediteTestPortalModel.Store.Nop_OrderProductVariantInsert" />
+          <FunctionImportMapping FunctionImportName="SIT_GetSalePrice" FunctionName="ExpediteTestPortalModel.Store.SIT_GetSalePrice" />
+          <EntitySetMapping Name="SIT_CostCentre">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.SIT_CostCentre">
+              <MappingFragment StoreEntitySet="SIT_CostCentre">
+                <ScalarProperty Name="CostCentreDescription" ColumnName="CostCentreDescription" />
+                <ScalarProperty Name="OrganisationID" ColumnName="OrganisationID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="SageCostCentreNumber" ColumnName="SageCostCentreNumber" />
+                <ScalarProperty Name="CostCentreMonthlyBudget" ColumnName="CostCentreMonthlyBudget" />
+                <ScalarProperty Name="CostCentreName" ColumnName="CostCentreName" />
+                <ScalarProperty Name="CostCentreID" ColumnName="CostCentreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIT_CostCentreLoadByCustomerID" FunctionName="ExpediteTestPortalModel.Store.SIT_CostCentreLoadByCustomerID">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SIT_Address">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.SIT_Address">
+              <MappingFragment StoreEntitySet="SIT_Address">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="AddressName" ColumnName="AddressName" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ZipPostalCode" ColumnName="ZipPostalCode" />
+                <ScalarProperty Name="StateProvinceID" ColumnName="StateProvinceID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IsBillingAddress" ColumnName="IsBillingAddress" />
+                <ScalarProperty Name="OrganisationID" ColumnName="OrganisationID" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIT_AddressesForUser" FunctionName="ExpediteTestPortalModel.Store.SIT_AddressesForUser">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SIT_Organisation">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.SIT_Organisation">
+              <MappingFragment StoreEntitySet="SIT_Organisation">
+                <ScalarProperty Name="ReturnUniformName" ColumnName="ReturnUniformName" />
+                <ScalarProperty Name="IndividualCostCentres" ColumnName="IndividualCostCentres" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="OverrideEmail" ColumnName="OverrideEmail" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="OrganisationGUID" ColumnName="OrganisationGUID" />
+                <ScalarProperty Name="DeliveryProfile" ColumnName="DeliveryProfile" />
+                <ScalarProperty Name="PriceProfile" ColumnName="PriceProfile" />
+                <ScalarProperty Name="SageAccount" ColumnName="SageAccount" />
+                <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
+                <ScalarProperty Name="Theme" ColumnName="Theme" />
+                <ScalarProperty Name="OrganisationID" ColumnName="OrganisationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIT_AuthorisationAmounts">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.SIT_AuthorisationAmounts">
+              <MappingFragment StoreEntitySet="SIT_AuthorisationAmounts">
+                <ScalarProperty Name="OverridePriceProfile" ColumnName="OverridePriceProfile" />
+                <ScalarProperty Name="eNumType" ColumnName="eNumType" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="AuthorisationReq" ColumnName="AuthorisationReq" />
+                <ScalarProperty Name="AuthoriseeId" ColumnName="AuthoriseeId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AuthorisationAmountId" ColumnName="AuthorisationAmountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIT_AuthorisationGroups">
+            <EntityTypeMapping TypeName="ExpediteTestPortalModel.SIT_AuthorisationGroups">
+              <MappingFragment StoreEntitySet="SIT_AuthorisationGroups">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="AuthoriseeId" ColumnName="AuthoriseeId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="OrganisationId" ColumnName="OrganisationId" />
+                <ScalarProperty Name="AuthorisationGroupId" ColumnName="AuthorisationGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

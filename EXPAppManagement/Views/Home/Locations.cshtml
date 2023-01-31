@@ -1,0 +1,41 @@
+﻿@model EXPAppManagement.Models.LocationSetupModel
+
+<a href="~/Home/MaintainLocation">
+    <input type="button" value="Create New" />
+    </a>
+    <table id="Locations">
+        <thead>
+            <tr>
+                <th>Location Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Tolerance</th>
+                <th>Organisation</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loc in Model.Locations)
+            {
+                <tr>
+                    <td>@loc.LocationName</td>
+                    <td>@loc.Latitude</td>
+                    <td>@loc.Longitude</td>
+                    <td>@loc.Tolerance</td>
+                    <td>@if (Model.NopOrganisations.FirstOrDefault(x => x.OrganisationID == loc.OrganisationID) != null) { @Html.Raw(Model.NopOrganisations.FirstOrDefault(x => x.OrganisationID == loc.OrganisationID).OrganisationName) }</td>
+                    <td><a href="~/Home/MaintainLocation?ID=@loc.ID"><input type="button" value="Edit" /></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+
+    @*function EditLocation(locID) {
+        @Html.Raw("$.ajax({ url: '/Home/MaintainLocation?', data: 'json', type: 'GET', data: 'ID=' + locID + '&IsPart=true', cache: false, success: function (result) { $('#popUpItem').empty().append(result); }});")
+        @Html.Raw("Metro.dialog.open('#popUp');")
+    }*@
+    $(document).ready(function () {
+        $('#Locations').DataTable();
+    });
+    </script>
+

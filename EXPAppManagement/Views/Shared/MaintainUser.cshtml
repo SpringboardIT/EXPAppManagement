@@ -1,0 +1,167 @@
+﻿@model EXPAppManagement.Models.MaintainUserModel
+
+<form id="CreateJobForm" action="/Home/SaveUser" method="post" autocomplete="off">
+    <input type="hidden" name="IsNopUser" value="@Model.IsNopUser" />
+   
+    @if (Model.IsNopUser)
+    {
+        <h1>@Model.nopUser.Username</h1>
+        <input type="hidden" name="UserID" value="@Model.nopUser.CustomerID" />
+        <div class="row">
+            <div class="cell colspan2">
+                <label>Assigned App Users</label>
+                <table id="ExistingUsers">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (AppUser auser in Model.assignedAppUsers)
+                        {
+                            <tr>
+                                <td>@auser.Email</td>
+                                <td><input type="button" onclick="RemoveUserMapping('@Model.nopUser.CustomerID', '@auser.ID')" value="Remove" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell colspan2">
+                <label>App Users</label>
+                <table id="NewUsers">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (AppUser auser in Model.allAppUsers)
+                        {
+                            if (Model.assignedAppUsers.FirstOrDefault(x => x.ID == auser.ID) == null)
+                            {
+                                <tr>
+                                    <td>@auser.Email</td>
+                                    <td><input type="button" onclick="AddUserMapping('@Model.nopUser.CustomerID', '@auser.ID')" value="Add" /></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <h1>@Model.appUser.Email</h1>
+        <input type="hidden" name="UserID" value="@Model.appUser.ID" />
+        <div class="row">
+            <div class="cell colspan2">
+                <label>Assigned Nop Users</label>
+                <table id="ExistingUsers">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Nop_Customer auser in Model.assignedNopUsers)
+                        {
+                            <tr>
+                                <td>@auser.Username</td>
+                                <td><input type="button" onclick="RemoveUserMapping('@auser.CustomerID', '@Model.appUser.ID')" value="Remove" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell colspan2">
+                <label>Nop Users</label>
+                <table id="NewUsers">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Nop_Customer auser in Model.allNopUsers)
+                        {
+                            if (Model.assignedNopUsers.FirstOrDefault(x => x.CustomerID == auser.CustomerID) == null)
+                            {
+                                <tr>
+                                    <td>@auser.Username</td>
+                                    <td><input type="button" onclick="AddUserMapping('@auser.CustomerID', '@Model.appUser.ID')" value="Add" /></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell colspan2">
+                <h1>Roles</h1>
+                <input type="submit" value="Save" /><br /><br />
+                @foreach (AspNetRole role in Model.allRoles)
+                {
+                    if (Model.appUser.AspNetRoles.FirstOrDefault(x => x.Id == role.Id) == null)
+                    {
+            <label>@role.Name</label><input type="checkbox" data-role="checkbox" name="@role.Name" id="@role.Name" style="width: 100%;min-width: 250px;" /><br />
+                    }
+                    else
+                    {
+            <label>@role.Name</label><input type="checkbox" data-role="checkbox" name="@role.Name" id="@role.Name" style="width: 100%;min-width: 250px;" checked /><br />
+                    }
+
+                }
+            </div>
+        </div>
+        //Here is where we need to add a heading and the new fields
+        <div classs="row">
+            <div class="cell colspan-2">
+                <h1>User Info</h1>
+                <h2>Payroll Number</h2>
+                <input type="text" value="@Model.appUser.PayrollNo" name="payrollNum" id="payrollNumber"/>
+                <h2>Email address</h2>
+                <input type="text" value="@Model.appUser.Email" name="emailAddress" id="emailAddress"/>
+                <h2>Name</h2>
+                <input type="text" value="@Model.appUser.Name" name="empName" id="empName"/>
+                <h2>Date of Birth</h2>
+                <input type="datetime" value="@Model.appUser.DOB" name="DOB" id="DOB"/>
+                <br /><br />
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    }
+</form>
+<script>
+
+    $(document).ready(function () {
+        $('#ExistingUsers').DataTable();
+        $('#NewUsers').DataTable();
+    });
+
+    function AddUserMapping(NopUserID, AppUserID) {
+        $.ajax({ url: '/Home/AddUserMapping?', data: 'json', type: 'GET', data: 'NopUserID=' + NopUserID + '&AppUserID=' + AppUserID, cache: false, success: function (result) { } });
+        var delay = 1000;
+        setTimeout(function () { location.reload(); }, delay);
+    }
+    function RemoveUserMapping(NopUserID, AppUserID) {
+        $.ajax({ url: '/Home/RemoveUserMapping?', data: 'json', type: 'GET', data: 'NopUserID=' + NopUserID + '&AppUserID=' + AppUserID, cache: false, success: function (result) { } });
+        var delay = 1000;
+        setTimeout(function () { location.reload(); }, delay);
+        
+    }
+</script>

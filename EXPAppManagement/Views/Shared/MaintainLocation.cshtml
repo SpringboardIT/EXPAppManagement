@@ -1,0 +1,83 @@
+﻿@model EXPAppManagement.Models.MaintainLocationModel
+<script>
+    function LatLongSplit(e) {
+        var text = e.value;
+        const [latitude, longitude] = text.split(',');
+        $('#Lat').val(latitude.trim());
+        $('#Long').val(longitude.trim());
+    }
+</script>
+
+<form id="CreateLocation" action="/Home/SaveLocation" method="post" autocomplete="off" style="width:50%;">
+    <div class="row" style="padding:10px 0 0 0">
+        <div class="cell">
+
+            <input type="submit" value="Save" />
+            @if (Model.LocationExists)
+            {
+                <input type="hidden" name="LocationID" value="@Model.ExistingLocation.ID" />
+            }
+            </div>
+        </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Location Name</label>
+                </div>
+                <div class="cell">
+                    <input required name="LocationName" @if (Model.LocationExists) { @Html.Raw("value=\"" + Model.ExistingLocation.LocationName + "\"") } />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Latitude</label>
+                </div>
+                <div class="cell">
+                    <input id="Lat" required onPaste="var e=this; setTimeout(function(){LatLongSplit(e)}, 4);" name="Latitude" @if (Model.LocationExists) { @Html.Raw("value=\"" + Model.ExistingLocation.Latitude + "\"") } />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Longitude</label>
+                </div>
+                <div class="cell">
+                    <input id="Long" required name="Longitude" @if (Model.LocationExists) { @Html.Raw("value=\"" + Model.ExistingLocation.Longitude + "\"") } />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Tolerance</label>
+                </div>
+                <div class="cell">
+                    <input required type="number" name="Tolerance" @if (Model.LocationExists) { @Html.Raw("value=\"" + Model.ExistingLocation.Tolerance + "\"") } />
+                </div>
+            </div>
+            <div class="row" style="padding:10px 0 0 0">
+                <div class="cell">
+                    <label>Organisation</label>
+                </div>
+                <div class="cell">
+                    <select name="OrganisationID" required>
+                        <option value="0" selected disabled>Please Select...</option>
+                        @foreach (var org in Model.allNOPOrganisations.OrderBy(x => x.OrganisationName).ToList())
+                        {
+                            if (Model.LocationExists)
+                            {
+                                if (Model.ExistingLocation.OrganisationID == org.OrganisationID)
+                                {
+                                    <option selected value="@org.OrganisationID">@org.OrganisationName</option>
+                                }
+                                else
+                                {
+                                    <option value="@org.OrganisationID">@org.OrganisationName</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="@org.OrganisationID">@org.OrganisationName</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            </div>
+</form>

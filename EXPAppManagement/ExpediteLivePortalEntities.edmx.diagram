@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="994201f4bd4e4d4e909a958b92a76a27" Name="Diagram1" ZoomLevel="42">
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_Customer" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_Order" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_OrderProductVariant" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_Product" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_ProductVariant" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.SIT_OrderPad" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="ExpediteTestPortalModel.FK_Nop_OrderProductVariant_Nop_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpediteTestPortalModel.FK_Nop_OrderProductVariant_Nop_ProductVariant" ManuallyRouted="false" />
+        <AssociationConnector Association="ExpediteTestPortalModel.FK_Nop_ProductVariant_Nop_Product1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_CustomerAttribute" Width="1.5" PointX="10" PointY="5.25" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.Nop_Picture" Width="1.5" PointX="10.375" PointY="8.75" />
+        <AssociationConnector Association="ExpediteTestPortalModel.FK_Nop_CustomerAttribute_Nop_Customer" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.SIT_CostCentre" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.SIT_Address" Width="1.5" PointX="12" PointY="18.375" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.SIT_Organisation" Width="1.5" PointX="9.75" PointY="19" />
+        <AssociationConnector Association="ExpediteTestPortalModel.FK_SIT_Address_Nop_Organisation1" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.SIT_AuthorisationAmounts" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ExpediteTestPortalModel.SIT_AuthorisationGroups" Width="1.5" PointX="12.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

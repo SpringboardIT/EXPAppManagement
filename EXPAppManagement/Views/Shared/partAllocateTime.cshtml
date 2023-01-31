@@ -1,0 +1,47 @@
+﻿@model EXPAppManagement.Models.AllocateTimeModel
+<script>
+    function CheckValues() {
+
+        var total = 0;
+        $('input.bp').each(function () {
+                     total += parseInt(this.value);
+        });
+        if ($('#Total').val() >= total) {
+
+        }
+        else {
+            alert('You have allocated more time than is available');
+        }
+    }
+</script>
+<div class="row">
+    <div class="cell">
+        <h3>Total Time on Clocking</h3>
+        <input id="Total" type="number" value="@Model.Duration" disabled />
+    </div>
+    <div class="cell">
+        <h3>Bright Pay Time Type 1</h3>
+        <input class="bp" id="BP1" type="number" value="@Model.Duration" />
+    </div>
+    <div class="cell">
+        <h3>Bright Pay Time Type 2</h3>
+        <input class="bp" id="BP2" type="number" value="0" />
+    </div>
+    <div class="cell">
+        <h3>Bright Pay Time Type 3</h3>
+        <input class="bp" id="BP3" type="number" value="0" />
+    </div>
+    <div class="cell">
+        <h3>Bright Pay Time Type 4</h3>
+        <input class="bp" id="BP4" type="number" value="0" />
+    </div>
+    <div class="cell">
+        <h3>Bright Pay Time Type 5</h3>
+        <input class="bp" id="BP5" type="number" value="0" />
+    </div>
+</div>
+<div class="row">
+    <div class="cell">
+        <button onclick="CheckValues();">Save</button>
+    </div>
+</div>

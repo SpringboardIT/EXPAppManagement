@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://expedite.springboardit.solutions/SITWebServices/DataLoad.asmx?wsdl" docRef="http://expedite.springboardit.solutions/SITWebServices/DataLoad.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://expedite.springboardit.solutions/SITWebServices/DataLoad.asmx" xmlns:q1="http://springboardit.co.uk/ExpNopWebService/" binding="q1:SpicersLoadSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://expedite.springboardit.solutions/SITWebServices/DataLoad.asmx" xmlns:q2="http://springboardit.co.uk/ExpNopWebService/" binding="q2:SpicersLoadSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

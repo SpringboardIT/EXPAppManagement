@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea39fca4e7194363ab10ac8fafc248ae" Name="Diagram1">
+        <EntityTypeShape EntityType="ExpAppClockingsModel.DataMapping" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.DataMappingType" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.AspNetUser" Width="1.5" PointX="5.125" PointY="1" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.ClockingLocation" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.AppUser" Width="1.5" PointX="7.125" PointY="5.5" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.AspNetRole" Width="1.5" PointX="10.625" PointY="4.125" />
+        <AssociationConnector Association="ExpAppClockingsModel.AppUserRoles" />
+        <AssociationConnector Association="ExpAppClockingsModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.ClockingTransaction" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.Timesheet" Width="1.5" PointX="3" PointY="8" />
+        <AssociationConnector Association="ExpAppClockingsModel.FK_ClockInTransaction" />
+        <AssociationConnector Association="ExpAppClockingsModel.FK_ClockOutTransaction" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.C__MigrationHistory" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.AspNetUserClaim" Width="1.5" PointX="7.375" PointY="12" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.AspNetUserLogin" Width="1.5" PointX="7.375" PointY="9.5" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.Timesheets_History" Width="1.5" PointX="9.375" PointY="7.75" />
+        <AssociationConnector Association="ExpAppClockingsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ExpAppClockingsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <EntityTypeShape EntityType="ExpAppClockingsModel.ClockLogging" Width="1.5" PointX="11.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,906 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExpAppClockingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="PayrollNo" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="datetime2" Precision="7" />
+          <Property Name="AccessToken" Type="uniqueidentifier" />
+          <Property Name="Secret" Type="uniqueidentifier" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="AppVersion" Type="nvarchar(max)" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="VerificationEmail" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClockingLocations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="Tolerance" Type="int" Nullable="false" />
+          <Property Name="OrganisationID" Type="int" />
+        </EntityType>
+        <EntityType Name="ClockingTransactions">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="UniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserEmailAddress" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Justification" Type="nvarchar(max)" />
+          <Property Name="ClockType" Type="int" Nullable="false" />
+          <Property Name="AppUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TimesheetID" Type="uniqueidentifier" />
+          <Property Name="ClockingLocationID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ClockLogging">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AppUserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LogDetails" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateSent" Type="smalldatetime" />
+          <Property Name="type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="connectionType" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataMappings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DataMappingType" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PrimaryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SecondaryID" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataMappingTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="eNumMapping" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timesheets">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="UniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserEmailAddress" Type="nvarchar(max)" />
+          <Property Name="ClockInLat" Type="float" />
+          <Property Name="ClockInLong" Type="float" />
+          <Property Name="ClockOutLat" Type="float" />
+          <Property Name="ClockOutLong" Type="float" />
+          <Property Name="ClockInDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ClockOutDateTime" Type="datetime" />
+          <Property Name="OutOfRangeClockInJustification" Type="nvarchar(max)" />
+          <Property Name="OutOfRangeClockOutJustification" Type="nvarchar(max)" />
+          <Property Name="AppUserID" Type="uniqueidentifier" />
+          <Property Name="ClockingLocationID" Type="uniqueidentifier" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedBy" Type="uniqueidentifier" />
+          <Property Name="ClockInTransaction" Type="uniqueidentifier" />
+          <Property Name="ClockOutTransaction" Type="uniqueidentifier" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EndTime" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ExpAppClockings.dbo.Timesheets_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Timesheets_History">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+            <PropertyRef Name="ClockInDateTime" />
+            <PropertyRef Name="Approved" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="EndTime" />
+          </Key>
+          <Property Name="UniqueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserEmailAddress" Type="nvarchar(max)" />
+          <Property Name="ClockInLat" Type="float" />
+          <Property Name="ClockInLong" Type="float" />
+          <Property Name="ClockOutLat" Type="float" />
+          <Property Name="ClockOutLong" Type="float" />
+          <Property Name="ClockInDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ClockOutDateTime" Type="datetime" />
+          <Property Name="OutOfRangeClockInJustification" Type="nvarchar(max)" />
+          <Property Name="OutOfRangeClockOutJustification" Type="nvarchar(max)" />
+          <Property Name="AppUserID" Type="uniqueidentifier" />
+          <Property Name="ClockingLocationID" Type="uniqueidentifier" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedBy" Type="uniqueidentifier" />
+          <Property Name="ClockInTransaction" Type="uniqueidentifier" />
+          <Property Name="ClockOutTransaction" Type="uniqueidentifier" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="StartTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ClockInTransaction">
+          <End Role="ClockingTransactions" Type="Self.ClockingTransactions" Multiplicity="0..1" />
+          <End Role="Timesheets" Type="Self.Timesheets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClockingTransactions">
+              <PropertyRef Name="UniqueID" />
+            </Principal>
+            <Dependent Role="Timesheets">
+              <PropertyRef Name="ClockInTransaction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClockOutTransaction">
+          <End Role="ClockingTransactions" Type="Self.ClockingTransactions" Multiplicity="0..1" />
+          <End Role="Timesheets" Type="Self.Timesheets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClockingTransactions">
+              <PropertyRef Name="UniqueID" />
+            </Principal>
+            <Dependent Role="Timesheets">
+              <PropertyRef Name="ClockOutTransaction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AppUserRoles_dbo_AppRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AppUserRoles" Type="Self.AppUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AppUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AppUserRoles_dbo_AppUsers_UserId">
+          <End Role="AppUsers" Type="Self.AppUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AppUserRoles" Type="Self.AppUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AppUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExpAppClockingsModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppUserRoles" EntityType="Self.AppUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppUsers" EntityType="Self.AppUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClockingLocations" EntityType="Self.ClockingLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClockingTransactions" EntityType="Self.ClockingTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClockLogging" EntityType="Self.ClockLogging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataMappings" EntityType="Self.DataMappings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataMappingTypes" EntityType="Self.DataMappingTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timesheets" EntityType="Self.Timesheets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timesheets_History" EntityType="Self.Timesheets_History" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Timesheets_History].[UniqueID] AS [UniqueID], 
+    [Timesheets_History].[UserEmailAddress] AS [UserEmailAddress], 
+    [Timesheets_History].[ClockInLat] AS [ClockInLat], 
+    [Timesheets_History].[ClockInLong] AS [ClockInLong], 
+    [Timesheets_History].[ClockOutLat] AS [ClockOutLat], 
+    [Timesheets_History].[ClockOutLong] AS [ClockOutLong], 
+    [Timesheets_History].[ClockInDateTime] AS [ClockInDateTime], 
+    [Timesheets_History].[ClockOutDateTime] AS [ClockOutDateTime], 
+    [Timesheets_History].[OutOfRangeClockInJustification] AS [OutOfRangeClockInJustification], 
+    [Timesheets_History].[OutOfRangeClockOutJustification] AS [OutOfRangeClockOutJustification], 
+    [Timesheets_History].[AppUserID] AS [AppUserID], 
+    [Timesheets_History].[ClockingLocationID] AS [ClockingLocationID], 
+    [Timesheets_History].[Comments] AS [Comments], 
+    [Timesheets_History].[Approved] AS [Approved], 
+    [Timesheets_History].[ApprovedBy] AS [ApprovedBy], 
+    [Timesheets_History].[ClockInTransaction] AS [ClockInTransaction], 
+    [Timesheets_History].[ClockOutTransaction] AS [ClockOutTransaction], 
+    [Timesheets_History].[Duration] AS [Duration], 
+    [Timesheets_History].[StartTime] AS [StartTime], 
+    [Timesheets_History].[EndTime] AS [EndTime]
+    FROM [dbo].[Timesheets_History] AS [Timesheets_History]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ClockInTransaction" Association="Self.FK_ClockInTransaction">
+            <End Role="ClockingTransactions" EntitySet="ClockingTransactions" />
+            <End Role="Timesheets" EntitySet="Timesheets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClockOutTransaction" Association="Self.FK_ClockOutTransaction">
+            <End Role="ClockingTransactions" EntitySet="ClockingTransactions" />
+            <End Role="Timesheets" EntitySet="Timesheets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AppUserRoles_dbo_AppRoles_RoleId" Association="Self.FK_dbo_AppUserRoles_dbo_AppRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AppUserRoles" EntitySet="AppUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AppUserRoles_dbo_AppUsers_UserId" Association="Self.FK_dbo_AppUserRoles_dbo_AppUsers_UserId">
+            <End Role="AppUsers" EntitySet="AppUsers" />
+            <End Role="AppUserRoles" EntitySet="AppUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExpAppClockingsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ExpAppClockingsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DataMappings" EntityType="ExpAppClockingsModel.DataMapping" />
+          <EntitySet Name="DataMappingTypes" EntityType="ExpAppClockingsModel.DataMappingType" />
+          <EntitySet Name="AspNetUsers" EntityType="ExpAppClockingsModel.AspNetUser" />
+          <EntitySet Name="ClockingLocations" EntityType="ExpAppClockingsModel.ClockingLocation" />
+          <EntitySet Name="AppUsers" EntityType="ExpAppClockingsModel.AppUser" />
+          <EntitySet Name="AspNetRoles" EntityType="ExpAppClockingsModel.AspNetRole" />
+          <AssociationSet Name="AppUserRoles" Association="ExpAppClockingsModel.AppUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AppUser" EntitySet="AppUsers" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="ExpAppClockingsModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="ClockingTransactions" EntityType="ExpAppClockingsModel.ClockingTransaction" />
+          <EntitySet Name="Timesheets" EntityType="ExpAppClockingsModel.Timesheet" />
+          <AssociationSet Name="FK_ClockInTransaction" Association="ExpAppClockingsModel.FK_ClockInTransaction">
+            <End Role="ClockingTransaction" EntitySet="ClockingTransactions" />
+            <End Role="Timesheet" EntitySet="Timesheets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClockOutTransaction" Association="ExpAppClockingsModel.FK_ClockOutTransaction">
+            <End Role="ClockingTransaction" EntitySet="ClockingTransactions" />
+            <End Role="Timesheet" EntitySet="Timesheets" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="ExpAppClockingsModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetUserClaims" EntityType="ExpAppClockingsModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="ExpAppClockingsModel.AspNetUserLogin" />
+          <EntitySet Name="Timesheets_History" EntityType="ExpAppClockingsModel.Timesheets_History" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ExpAppClockingsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ExpAppClockingsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <EntitySet Name="ClockLoggings" EntityType="ExpAppClockingsModel.ClockLogging" />
+          </EntityContainer>
+        <EntityType Name="DataMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="DataMappingType" Type="Guid" Nullable="false" />
+          <Property Name="PrimaryID" Type="Guid" Nullable="false" />
+          <Property Name="SecondaryID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DataMappingType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="eNumMapping" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ExpAppClockingsModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="ExpAppClockingsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="ExpAppClockingsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+        </EntityType>
+        <EntityType Name="ClockingLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="LocationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="Tolerance" Type="Int32" Nullable="false" />
+          <Property Name="OrganisationID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AppUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PayrollNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="7" />
+          <Property Name="AccessToken" Type="Guid" />
+          <Property Name="Secret" Type="Guid" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ExpAppClockingsModel.AppUserRoles" FromRole="AppUser" ToRole="AspNetRole" />
+          <Property Name="AppVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="VerificationEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AppUsers" Relationship="ExpAppClockingsModel.AppUserRoles" FromRole="AspNetRole" ToRole="AppUser" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ExpAppClockingsModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="AppUserRoles">
+          <End Type="ExpAppClockingsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="ExpAppClockingsModel.AppUser" Role="AppUser" Multiplicity="*" />
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="ExpAppClockingsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="ExpAppClockingsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ClockingTransaction">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="UniqueID" Type="Guid" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClockType" Type="Int32" Nullable="false" />
+          <Property Name="AppUserID" Type="Guid" Nullable="false" />
+          <Property Name="TimesheetID" Type="Guid" />
+          <Property Name="ClockingLocationID" Type="Guid" />
+          <NavigationProperty Name="Timesheets" Relationship="ExpAppClockingsModel.FK_ClockInTransaction" FromRole="ClockingTransaction" ToRole="Timesheet" />
+          <NavigationProperty Name="Timesheets1" Relationship="ExpAppClockingsModel.FK_ClockOutTransaction" FromRole="ClockingTransaction" ToRole="Timesheet" />
+          <Property Name="UserEmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          </EntityType>
+        <EntityType Name="Timesheet">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="UniqueID" Type="Guid" Nullable="false" />
+          <Property Name="ClockInDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClockOutDateTime" Type="DateTime" Precision="3" />
+          <Property Name="AppUserID" Type="Guid" />
+          <Property Name="ClockingLocationID" Type="Guid" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedBy" Type="Guid" />
+          <Property Name="ClockInTransaction" Type="Guid" />
+          <Property Name="ClockOutTransaction" Type="Guid" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ClockingTransaction" Relationship="ExpAppClockingsModel.FK_ClockInTransaction" FromRole="Timesheet" ToRole="ClockingTransaction" />
+          <NavigationProperty Name="ClockingTransaction1" Relationship="ExpAppClockingsModel.FK_ClockOutTransaction" FromRole="Timesheet" ToRole="ClockingTransaction" />
+          <Property Name="UserEmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClockInLat" Type="Double" />
+          <Property Name="ClockInLong" Type="Double" />
+          <Property Name="ClockOutLat" Type="Double" />
+          <Property Name="ClockOutLong" Type="Double" />
+          <Property Name="OutOfRangeClockInJustification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OutOfRangeClockOutJustification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ClockInTransaction">
+          <End Type="ExpAppClockingsModel.ClockingTransaction" Role="ClockingTransaction" Multiplicity="0..1" />
+          <End Type="ExpAppClockingsModel.Timesheet" Role="Timesheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClockingTransaction">
+              <PropertyRef Name="UniqueID" />
+            </Principal>
+            <Dependent Role="Timesheet">
+              <PropertyRef Name="ClockInTransaction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClockOutTransaction">
+          <End Type="ExpAppClockingsModel.ClockingTransaction" Role="ClockingTransaction" Multiplicity="0..1" />
+          <End Type="ExpAppClockingsModel.Timesheet" Role="Timesheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClockingTransaction">
+              <PropertyRef Name="UniqueID" />
+            </Principal>
+            <Dependent Role="Timesheet">
+              <PropertyRef Name="ClockOutTransaction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ExpAppClockingsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ExpAppClockingsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Timesheets_History">
+          <Key>
+            <PropertyRef Name="UniqueID" />
+            <PropertyRef Name="ClockInDateTime" />
+            <PropertyRef Name="Approved" />
+            <PropertyRef Name="StartTime" />
+            <PropertyRef Name="EndTime" />
+          </Key>
+          <Property Name="UniqueID" Type="Guid" Nullable="false" />
+          <Property Name="ClockInDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClockOutDateTime" Type="DateTime" Precision="3" />
+          <Property Name="AppUserID" Type="Guid" />
+          <Property Name="ClockingLocationID" Type="Guid" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedBy" Type="Guid" />
+          <Property Name="ClockInTransaction" Type="Guid" />
+          <Property Name="ClockOutTransaction" Type="Guid" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserEmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClockInLat" Type="Double" />
+          <Property Name="ClockInLong" Type="Double" />
+          <Property Name="ClockOutLat" Type="Double" />
+          <Property Name="ClockOutLong" Type="Double" />
+          <Property Name="OutOfRangeClockInJustification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OutOfRangeClockOutJustification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="ExpAppClockingsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ExpAppClockingsModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="ExpAppClockingsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ExpAppClockingsModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClockLogging">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppUserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogDetails" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateSent" Type="DateTime" Precision="0" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="connectionType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExpAppClockingsModelStoreContainer" CdmEntityContainer="ExpAppClockingsEntities">
+          <EntitySetMapping Name="DataMappings">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.DataMapping">
+              <MappingFragment StoreEntitySet="DataMappings">
+                <ScalarProperty Name="SecondaryID" ColumnName="SecondaryID" />
+                <ScalarProperty Name="PrimaryID" ColumnName="PrimaryID" />
+                <ScalarProperty Name="DataMappingType" ColumnName="DataMappingType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataMappingTypes">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.DataMappingType">
+              <MappingFragment StoreEntitySet="DataMappingTypes">
+                <ScalarProperty Name="eNumMapping" ColumnName="eNumMapping" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClockingLocations">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.ClockingLocation">
+              <MappingFragment StoreEntitySet="ClockingLocations">
+                <ScalarProperty Name="OrganisationID" ColumnName="OrganisationID" />
+                <ScalarProperty Name="Tolerance" ColumnName="Tolerance" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppUsers">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.AppUser">
+              <MappingFragment StoreEntitySet="AppUsers">
+                <ScalarProperty Name="VerificationEmail" ColumnName="VerificationEmail" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Secret" ColumnName="Secret" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PayrollNo" ColumnName="PayrollNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AppUserRoles" TypeName="ExpAppClockingsModel.AppUserRoles" StoreEntitySet="AppUserRoles">
+            <EndProperty Name="AppUser">
+              <ScalarProperty Name="ID" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ExpAppClockingsModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ClockingTransactions">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.ClockingTransaction">
+              <MappingFragment StoreEntitySet="ClockingTransactions">
+                <ScalarProperty Name="UserEmailAddress" ColumnName="UserEmailAddress" />
+                <ScalarProperty Name="ClockingLocationID" ColumnName="ClockingLocationID" />
+                <ScalarProperty Name="TimesheetID" ColumnName="TimesheetID" />
+                <ScalarProperty Name="AppUserID" ColumnName="AppUserID" />
+                <ScalarProperty Name="ClockType" ColumnName="ClockType" />
+                <ScalarProperty Name="Justification" ColumnName="Justification" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timesheets">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.Timesheet">
+              <MappingFragment StoreEntitySet="Timesheets">
+                <ScalarProperty Name="OutOfRangeClockOutJustification" ColumnName="OutOfRangeClockOutJustification" />
+                <ScalarProperty Name="OutOfRangeClockInJustification" ColumnName="OutOfRangeClockInJustification" />
+                <ScalarProperty Name="ClockOutLong" ColumnName="ClockOutLong" />
+                <ScalarProperty Name="ClockOutLat" ColumnName="ClockOutLat" />
+                <ScalarProperty Name="ClockInLong" ColumnName="ClockInLong" />
+                <ScalarProperty Name="ClockInLat" ColumnName="ClockInLat" />
+                <ScalarProperty Name="UserEmailAddress" ColumnName="UserEmailAddress" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="ClockOutTransaction" ColumnName="ClockOutTransaction" />
+                <ScalarProperty Name="ClockInTransaction" ColumnName="ClockInTransaction" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ClockingLocationID" ColumnName="ClockingLocationID" />
+                <ScalarProperty Name="AppUserID" ColumnName="AppUserID" />
+                <ScalarProperty Name="ClockOutDateTime" ColumnName="ClockOutDateTime" />
+                <ScalarProperty Name="ClockInDateTime" ColumnName="ClockInDateTime" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timesheets_History">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.Timesheets_History">
+              <MappingFragment StoreEntitySet="Timesheets_History">
+                <ScalarProperty Name="OutOfRangeClockOutJustification" ColumnName="OutOfRangeClockOutJustification" />
+                <ScalarProperty Name="OutOfRangeClockInJustification" ColumnName="OutOfRangeClockInJustification" />
+                <ScalarProperty Name="ClockOutLong" ColumnName="ClockOutLong" />
+                <ScalarProperty Name="ClockOutLat" ColumnName="ClockOutLat" />
+                <ScalarProperty Name="ClockInLong" ColumnName="ClockInLong" />
+                <ScalarProperty Name="ClockInLat" ColumnName="ClockInLat" />
+                <ScalarProperty Name="UserEmailAddress" ColumnName="UserEmailAddress" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="ClockOutTransaction" ColumnName="ClockOutTransaction" />
+                <ScalarProperty Name="ClockInTransaction" ColumnName="ClockInTransaction" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ClockingLocationID" ColumnName="ClockingLocationID" />
+                <ScalarProperty Name="AppUserID" ColumnName="AppUserID" />
+                <ScalarProperty Name="ClockOutDateTime" ColumnName="ClockOutDateTime" />
+                <ScalarProperty Name="ClockInDateTime" ColumnName="ClockInDateTime" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClockLoggings">
+            <EntityTypeMapping TypeName="ExpAppClockingsModel.ClockLogging">
+              <MappingFragment StoreEntitySet="ClockLogging">
+                <ScalarProperty Name="connectionType" ColumnName="connectionType" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LogDetails" ColumnName="LogDetails" />
+                <ScalarProperty Name="AppUserID" ColumnName="AppUserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

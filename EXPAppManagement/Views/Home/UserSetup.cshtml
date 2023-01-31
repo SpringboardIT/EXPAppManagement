@@ -1,0 +1,90 @@
+﻿@model EXPAppManagement.Models.UserSetupModel
+<script>
+    function IncludeDeleted() {
+        window.location =('/home/UserSetup?Type=@Model.screenType.ToString()&ShowDeleted=' + $('#includeDeleted').prop('checked'));
+    };
+</script>
+@if (Model.AppUser.Count > 0 && Model.NopUsers.Count == 0)
+{
+    <a href="~/Register.aspx"><input type="button" value="Create New" /></a>
+    <a>Include Deleted <input name="Include Deleted" id="includeDeleted" type="checkbox" value="Include Deleted" onchange="IncludeDeleted();" @if (Model.showDeleted) { @Html.Raw("checked") }></a>
+    <table id="Users">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Payroll No</th>
+                <th>Signed Up Date</th>
+                <th hidden="hidden"></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AppUser auser in Model.AppUser)
+            {
+                if (auser.Deleted == false || auser.Deleted == null)
+                {
+                    <tr>
+                        <td>@auser.Name</td>
+                        <td>@auser.Email</td>
+                        <td>@auser.PayrollNo</td>
+                        <td hidden="hidden">@auser.CreatedDate.ToString("yyyy/MM/dd hh:mm:ss")  </td>
+                        <td>@auser.CreatedDate.ToString("dd/MM/yyyy hh:mm:ss")</td>
+                        <td><a href="~/Home/MaintainUser?ID=@auser.ID&IsNopUser=false"><input type="button" value="Edit" /></a></td>
+                        <td><a href="~/Home/DeleteUser?ID=@auser.ID&IsNopUser=false"><input type="button" value="Delete" /></a></td>
+                    </tr>
+                }
+                else
+                {
+                    if (Model.showDeleted)
+                    {
+                        <tr>
+                            <td>@auser.Name</td>
+                            <td>@auser.Email</td>
+                            <td>@auser.PayrollNo</td>
+                            <td hidden="hidden">@auser.CreatedDate.ToString("yyyy/MM/dd hh:mm:ss")  </td>
+                            <td>@auser.CreatedDate.ToString("dd/MM/yyyy hh:mm:ss")</td>
+                            <td><a href="~/Home/MaintainUser?ID=@auser.ID&IsNopUser=false"><input type="button" value="Edit" /></a></td>
+                            <td><a href="~/Home/UnDeleteUser?ID=@auser.ID&IsNopUser=false"><input type="button" value="Undelete" /></a></td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+}
+@if (Model.NopUsers.Count > 0 && Model.AppUser.Count == 0)
+{
+    <table id="Users">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Organisation</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Nop_Customer auser in Model.NopUsers)
+            {
+                <tr>
+                    <td>@auser.Username</td>
+                    <td>@Model.NopOrganisations.FirstOrDefault(x => x.OrganisationID == auser.SITOrganisationID).OrganisationName</td>
+                    <td>@auser.Email</td>
+                    <td><a href="~/Home/MaintainUser?ID=@auser.CustomerID&IsNopUser=true"><input type="button" value="Edit" /></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script>
+        function EditUser(statusID, isNop) {
+        @Html.Raw("$.ajax({ url: '/Home/MaintainUser?', data: 'json', type: 'GET', data: 'JobStatus=' + statusID + '&IsPart=true', cache: false, success: function (result) { $('#popUpItem').empty().append(result); }});")
+        @Html.Raw("Metro.dialog.open('#popUp');")
+    }
+    $(document).ready(function () {
+        $('#Users').DataTable();
+    });
+</script>
+
